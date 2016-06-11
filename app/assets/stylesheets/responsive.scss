@@ -12,6 +12,16 @@
 		max-width: 45%;
 		text-align: right;
 	}
+
+	.info {
+		max-width: 65%;
+	}
+}
+
+@media(max-width: $screen-sm-max) {
+	a.edit, a.delete {
+		margin-bottom: 5px;
+	}
 }
 
 @media(max-width: $screen-xs-max) {

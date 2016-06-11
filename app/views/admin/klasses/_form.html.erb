@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin, klass] do |f| %>
+  <%= f.input :name %>
+  <%= f.association :grade, include_blank: false %><br/>
+
+  <%= f.button :submit, value: klass.new_record? ? "Tạo Lớp" : "Cập nhật",
+  	class: "btn-success" %>
+<% end %>

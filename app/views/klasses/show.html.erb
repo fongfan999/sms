@@ -1,0 +1,28 @@
+<% title("Lớp #{@klass.name}") %>
+
+<header>
+	<h2>Lớp <%= @klass.name %></h2>
+	<ul class="actions">
+		<li><%= link_to 'Sửa Lớp', edit_admin_klass_path(@klass), class: "edit" %></li>
+		<li><%= link_to "Xóa Lớp", admin_klass_path(@klass),
+			class: "delete", method: :delete,
+			data: { confirm: "Are you sure to delete this student?" } %></li>
+	</ul>
+</header>
+
+<table class="info">
+	<tr>
+		<th>Tên lớp</th>
+		<td><%= @klass.name.upcase %></td>
+	</tr>
+	<tr>
+		<th>Tên khối</th>
+		<td><%= @klass.grade.name %></td>
+	</tr>
+	<tr>
+		<th>Tổng số học sinh</th>
+		<td><%= @klass.students_count %></td>
+	</tr>
+</table>
+
+<%= link_to "Trở về", :back, class: "back" %>
