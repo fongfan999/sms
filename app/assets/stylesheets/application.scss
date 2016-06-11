@@ -3,3 +3,142 @@
 @import "bootstrap";
 @import "font-awesome";
 @import 'flat-ui';
+@import "responsive";
+
+html, body {
+	overflow-x: hidden;
+}
+
+body {
+	padding-top: 50px;
+	min-height: 700px;
+}
+
+body a {
+	transition:0.3s all;
+	-webkit-transition:0.3s all;
+	-moz-transition:0.3s all;
+	-o-transition:0.3s all;
+	-ms-transition:0.3s all;
+}
+
+div.tooltip-inner {
+  font-size: 20px;
+}
+
+header {
+	h1, h2, h3, h4, h5, h6 {
+		position: relative;
+	}
+
+	@extend .page-header;
+	position: relative;
+	padding-bottom: 0px;
+
+	&:first-child {
+		margin-top: 20px;
+	}
+}
+
+ul.actions, ul.list-actions {
+	@extend .list-unstyled;
+	@extend .list-inline;
+}
+
+form {
+	max-width: 500px;
+}
+
+.login-form > form {
+	width: 100%;
+}
+
+a.new, a.edit, a.delete, a.back {
+	@extend .btn;
+
+	&:before {
+		font-family: "FontAwesome";
+		padding-right: 0.5em;
+	}
+}
+
+a.new {
+	@extend .btn-success;
+
+	&:before {
+		@extend .fa-plus-square;
+	}
+}
+
+a.edit {
+	@extend .btn-primary;
+
+	&:before {
+		@extend .fa-pencil;
+	}
+}
+
+a.delete {
+	@extend .btn-danger;
+
+	&:before {
+		@extend .fa-trash-o;
+	}
+}
+
+a.back {
+	@extend .btn-warning;
+	margin: 20px 0;
+
+	&:before {
+		@extend .fa-backward;
+	}
+}
+
+.alert {
+	margin-top: 10px;
+}
+
+.alert-notice {
+	@extend .alert-success;
+}
+
+.alert-alert {
+	@extend .alert-danger;
+}
+
+.info {
+	@extend .table;
+	@extend .table-condensed;
+
+	th {
+		width: 35%;
+	}
+
+	tr:first-child {
+		td, th {
+			border-top: 0;
+		}
+	}
+
+	td, th {
+		line-height: 24px !important;
+	}
+
+	margin-bottom: 30px;
+}
+
+.listing-index {
+	overflow-x: auto;
+}
+
+.listing-index table {
+	@extend .table;
+	@extend .table-bordered;
+	@extend .table-hover;
+	text-align: center;
+
+	thead tr th {
+		text-align: center;
+	}
+}

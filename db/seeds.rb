@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+unless Grade.exists?(name: "Khối 10")
+	Grade.create(name: "Khối 10")
+end
+
+unless Grade.exists?(name: "Khối 11")
+	Grade.create(name: "Khối 11")
+end
+
+unless Grade.exists?(name: "Khối 12")
+	Grade.create(name: "Khối 12")
+end
