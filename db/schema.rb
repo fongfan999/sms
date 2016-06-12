@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612103759) do
+ActiveRecord::Schema.define(version: 20160612125632) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(version: 20160612103759) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "details", force: :cascade do |t|
+    t.float    "audition",   default: 0.0
+    t.float    "semi_final", default: 0.0
+    t.float    "final",      default: 0.0
+    t.integer  "course_id"
+    t.integer  "score_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "details", ["course_id"], name: "index_details_on_course_id"
+  add_index "details", ["score_id"], name: "index_details_on_score_id"
 
   create_table "grades", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +49,17 @@ ActiveRecord::Schema.define(version: 20160612103759) do
   end
 
   add_index "klasses", ["grade_id"], name: "index_klasses_on_grade_id"
+
+  create_table "scores", force: :cascade do |t|
+    t.float    "gpa",         default: 0.0
+    t.integer  "student_id"
+    t.integer  "semester_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "scores", ["semester_id"], name: "index_scores_on_semester_id"
+  add_index "scores", ["student_id"], name: "index_scores_on_student_id"
 
   create_table "semesters", force: :cascade do |t|
     t.string   "name"

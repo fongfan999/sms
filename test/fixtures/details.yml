@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  audition: 1.5
+  semi_final: 1.5
+  final: 1.5
+  course_id: 
+  score_id: 
+
+two:
+  audition: 1.5
+  semi_final: 1.5
+  final: 1.5
+  course_id: 
+  score_id: 

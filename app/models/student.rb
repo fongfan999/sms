@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
   belongs_to :klass
+  has_many :scores
 
   def id_code
   	length = id.to_s.length

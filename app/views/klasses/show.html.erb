@@ -37,6 +37,8 @@
 	<h3>Danh sách học sinh</h3>
 
 	<ul class="actions">
+    <li><%= link_to "Bảng điểm", klass_scores_path(@klass),
+    	class: "scoreboard" %></li>
 		<li><%= link_to "Thêm mới", new_klass_student_path(@klass),
       class: "new" %></li>
 	</ul>

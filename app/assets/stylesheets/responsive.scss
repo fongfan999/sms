@@ -22,10 +22,15 @@
 	a.edit, a.delete {
 		margin-bottom: 5px;
 	}
+
 }
 
 @media(max-width: $screen-xs-max) {
 	li.navbar-text {
 		padding-left: 25px;
 	}
+
+	.navbar-header img {
+    margin-left: 20px;
+  }
 }

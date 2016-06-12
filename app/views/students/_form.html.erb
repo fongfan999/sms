@@ -9,5 +9,6 @@
 	<%= f.input :address, label: "Địa chỉ" %>
 	<%= f.input :email, label: "Địa chỉ e-mail" %>
 
-	<%= f.button :submit, class: "btn-success" %>
+	<%= f.button :submit, value: student.new_record? ? "Tạo" : "Cập nhật",
+		class: "btn-success" %>
 <% end %>
