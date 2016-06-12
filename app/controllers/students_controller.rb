@@ -13,10 +13,6 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
-    respond_to do |format|
-      format.html
-      format.json { render json: @student.gender }
-    end
   end
 
   # POST /students

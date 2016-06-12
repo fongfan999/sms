@@ -17,3 +17,35 @@ end
 unless Grade.exists?(name: "Khối 12")
 	Grade.create(name: "Khối 12")
 end
+
+unless Course.exists?(name: "Toán học")
+	Course.create(name: "Toán học", color: "#1abc9c")
+end
+unless Course.exists?(name: "Vật Lý")
+	Course.create(name: "Vật Lý", color: "#2ecc71")
+end
+unless Course.exists?(name: "Hóa học")
+	Course.create(name: "Hóa học", color: "#3498db")
+end
+unless Course.exists?(name: "Sinh học")
+	Course.create(name: "Sinh học", color: "#9b59b6")
+end
+unless Course.exists?(name: "Văn học")
+	Course.create(name: "Văn học", color: "#34495e")
+end
+unless Course.exists?(name: "Lịch Sử")
+	Course.create(name: "Lịch Sử", color: "#f1c40f")
+end
+unless Course.exists?(name: "Địa Lý")
+	Course.create(name: "Địa Lý", color: "#e67e22")
+end
+unless Course.exists?(name: "Tiếng Anh")
+	Course.create(name: "Tiếng Anh", color: "#e74c3c")
+end
+
+unless Semester.exists?(name: "Học kỳ 1")
+	Semester.create(name: "Học kỳ 1")
+end
+unless Semester.exists?(name: "Học kỳ 2")
+	Semester.create(name: "Học kỳ 2")
+end
