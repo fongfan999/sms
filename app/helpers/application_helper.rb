@@ -10,4 +10,8 @@ module ApplicationHelper
 	def admins_only(&block)
 		block.call if current_user.try(:admin?)
 	end
+
+	def format_date(date, time = true)
+		time ? date.strftime("%d-%m-%Y, %H:%M") : date.strftime("%d-%m-%Y")
+	end
 end

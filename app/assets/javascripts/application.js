@@ -17,3 +17,25 @@
 //= require flat-ui
 //= require flat-ui/flatui-checkbox
 //= require flat-ui/flatui-radio
+
+$(document).ready(function() {
+	setTimeout(
+    function() {
+     $(".alert").fadeOut();
+    },
+    5000
+  );
+
+  var tmp = $(".radio").find("label");
+  if (tmp.length) {
+    if ($(".gender").data("id")) {
+    	tmp[1].click();
+    	tmp[0].click();
+    } else {
+    	tmp[0].click();
+    	tmp[1].click();
+    }
+
+    $(".radio label").css("margin-top", "-8px");
+  };
+});

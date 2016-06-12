@@ -1,6 +1,6 @@
 <%= simple_form_for [:admin, klass] do |f| %>
-  <%= f.input :name %>
-  <%= f.association :grade, include_blank: false %><br/>
+  <%= f.input :name, label: "Tên Lớp" %>
+  <%= f.association :grade, include_blank: false, label: "Lớp" %><br/>
 
   <%= f.button :submit, value: klass.new_record? ? "Tạo Lớp" : "Cập nhật",
   	class: "btn-success" %>

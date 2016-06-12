@@ -142,3 +142,11 @@ a.back {
 		text-align: center;
 	}
 }
+
+.icon-only {
+	a.edit, a.delete {
+		&:before {
+			padding-right: 0;
+		}
+	}
+}

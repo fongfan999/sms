@@ -1,0 +1,13 @@
+<%= simple_form_for [klass, student] do |f| %>
+	<%= f.input :name, label: "Họ và tên" %>
+	<%= f.input :date_of_birth, label: "Ngày sinh", order: [:day, :month, :year],
+		start_year: Date.today.year - 25, end_year: Date.today.year - 15 %>
+	<span class="gender" data-id="<%= student.gender %>">
+	<%= f.input :gender, label: "Giới tính", as: :radio_buttons,
+		collection: [['Nam', true] ,['Nữ', false]] %>
+	</span>
+	<%= f.input :address, label: "Địa chỉ" %>
+	<%= f.input :email, label: "Địa chỉ e-mail" %>
+
+	<%= f.button :submit, class: "btn-success" %>
+<% end %>

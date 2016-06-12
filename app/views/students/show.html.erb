@@ -1,0 +1,52 @@
+<% title(@student.name) %>
+
+<header>
+  <h2><%= @student.name %></h2>
+
+  <ul class="actions">
+    <li><%= link_to "Sửa", [:edit, @klass, @student],
+      class: "edit" %></li>
+    <li><%= link_to "Xóa", [@klass, @student], class: "delete" %></li>
+  </ul>
+</header>
+
+<table class="info">
+  <tr>
+    <th>Họ và tên</th>
+    <td><%= @student.name %></td>
+  </tr>
+  <tr>
+    <th>Tên lớp</th>
+    <td><%= @student.klass.name %></td>
+  </tr>
+  <tr>
+    <th>Ngày sinh</th>
+    <td><%= format_date(@student.date_of_birth, false) %></td>
+  </tr>
+  <tr>
+    <th>Giới tính</th>
+    <td><%= @student.gender %></td>
+  </tr>
+  <tr>
+    <th>Địa chỉ</th>
+    <td><%= @student.address %></td>
+  </tr>
+  <tr>
+    <th>Địa chỉ Email</th>
+    <td><%= @student.email %></td>
+  </tr>
+  <tr>
+    <th>Tên phụ huynh</th>
+    <td><%= link_to "Chưa có", "#" %></td>
+  </tr>
+  <tr>
+    <th>Ngày tạo</th>
+    <td><%= format_date(@student.created_at) %></td>
+  </tr>
+  <tr>
+    <th>Cập nhật lần cuối</th>
+    <td><%= format_date(@student.updated_at) %></td>
+  </tr>
+</table>
+
+<%= link_to "Trở về", :back, class: "back" %>

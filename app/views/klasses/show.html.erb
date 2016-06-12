@@ -23,6 +23,57 @@
 		<th>Tổng số học sinh</th>
 		<td><%= @klass.students_count %></td>
 	</tr>
+	<tr>
+		<th>Ngày tạo</th>
+		<td><%= format_date(@klass.created_at) %></td>
+	</tr>
+	<tr>
+		<th>Cập nhật lần cuối</th>
+		<td><%= format_date(@klass.updated_at) %></td>
+	</tr>
 </table>
+
+<header>
+	<h3>Danh sách học sinh</h3>
+
+	<ul class="actions">
+		<li><%= link_to "Thêm mới", new_klass_student_path(@klass),
+      class: "new" %></li>
+	</ul>
+</header>
+
+<% if @students.present? %>
+  <div class="listing-index icon-only">
+    <table>
+      <thead>
+        <tr>
+        	<th>STT</th>
+		      <th>Họ và tên</th>
+		      <th>Mã số học sinh</th>
+		      <th>ĐTB HK1</th>
+		      <th>ĐTB HK2</th>
+		      <th></th>
+		    </tr>
+      </thead>
+      <tbody>
+        <% @students.each_with_index do |student, index| %>
+        <tr>
+        	<td><%= link_to index + 1, [@klass, student] %></td>
+	        <td><%= student.name %></td>
+	        <td><%= student.id_code %></td>
+	        <td>0.0</td>
+	        <td>0.0</td>
+	        <td>
+	        	<%= link_to '', [:edit, @klass, student], class: "edit" %>
+	        	<%= link_to '', [@klass, student], method: :delete,
+	        	data: { confirm: 'Bạn đã chắc chưa?' }, class: "delete" %></td>
+	      </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p>There is nothing to show.</p>
+<% end %>
 
 <%= link_to "Trở về", :back, class: "back" %>

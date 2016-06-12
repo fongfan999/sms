@@ -24,8 +24,8 @@
       <tbody>
         <% @klasses.each_with_index do |klass, index| %>
         <tr>
-          <td><%= index + 1 %></td>
-          <td><%= link_to klass.name, klass %></td>
+          <td><%= link_to index + 1, klass %></td>
+          <td><%= klass.name %></td>
           <td><%= klass.grade.name %></td>
           <td><%= klass.students_count %></td>
           <td><%= link_to 'Sửa', [:edit, :admin, klass], class: "edit" %>
@@ -36,7 +36,7 @@
     </table>
   </div>
 <% else %>
-  <p>There is nothing to show.</p>
+  <p>Hiện tại chưa có dữ liệu.</p>
 <% end %>
 
 <%= link_to "Trở về", :back, class: "back" %>
