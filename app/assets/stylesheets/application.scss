@@ -44,6 +44,10 @@ header {
 	}
 }
 
+.mw100 {
+	max-width: 100%;
+}
+
 ul.actions, ul.list-actions {
 	@extend .list-unstyled;
 	@extend .list-inline;
@@ -175,7 +179,7 @@ a.reset {
 
 .course {
 	@extend .label;
-	font-size: 15px;
+	font-size: 17px;
 	padding: 10px;
 	display: inline-block;
 }
@@ -202,8 +206,8 @@ a.reset {
 	margin-bottom: 10px;
 }
 
-.mt-15 {
-	margin-top: -15px;
+.mt-40 {
+	margin-top: -40px;
 }
 
 .center {
