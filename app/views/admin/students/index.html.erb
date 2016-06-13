@@ -1,0 +1,35 @@
+<header>
+  <h2>Danh sách Học sinh</h2>
+</header>
+
+<% if @students.present? %>
+  <div class="listing-index">
+<table>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Họ và tên</th>
+      <th>Lớp</th>
+      <th>ĐTB HK1</th>
+      <th>ĐTB HK2</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @students.each_with_index do |student, index| %>
+      <tr>
+        <td><%= link_to index + 1, "<div id=""></div>" %></td>
+        <td><%= student.name %></td>
+        <td><%= student.klass.name %></td>
+        <td><%= (rand*10).round(2) %></td>
+        <td><%= (rand*10).round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<% else %>
+  <p>Hiện tại chưa có dữ liệu.</p>
+<% end %>
+
+<%= link_to "Trở về", :back, class: "back" %>

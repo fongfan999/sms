@@ -5,12 +5,17 @@ Rails.application.routes.draw do
     root 'application#index'
 
     resources :klasses, except: [:show]
+    resources :students, only: [:index]
   end
 
   resources :klasses, only: [:show] do
-    resources :students
+    resources :students, except: [:index]
 
-    resources :scores
+    resources :semesters, only: [] do
+      resources :courses, only: [] do
+        resources :scores
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -49,3 +49,16 @@ end
 unless Semester.exists?(name: "Học kỳ 2")
 	Semester.create(name: "Học kỳ 2")
 end
+
+Student.all.each do |student|
+	Semester.all.each do |semester|
+		student.semesters << semester unless student.semesters.include?(semester)
+	end
+end
+
+Score.all.each do |score|
+	Course.all.each do |course|
+		score.courses << course unless score.courses.include?(course)
+	end
+end
+

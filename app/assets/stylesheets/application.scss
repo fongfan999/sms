@@ -57,7 +57,7 @@ form {
 	width: 100%;
 }
 
-a.new, a.edit, a.delete, a.back, a.scoreboard {
+a.new, a.edit, a.delete, a.back, a.scoreboard, a.reset {
 	@extend .btn;
 
 	&:before {
@@ -104,6 +104,16 @@ a.scoreboard {
 
 	&:before {
 		@extend .fa-table;
+	}
+}
+
+a.reset {
+	color: #fff;
+  background-color: #34495e;
+  border-color: #34495e;
+
+	&:before {
+		@extend .fa-refresh;
 	}
 }
 
@@ -156,9 +166,46 @@ a.scoreboard {
 }
 
 .icon-only {
-	a.edit, a.delete {
+	a.edit, a.delete, a.reset {
 		&:before {
 			padding-right: 0;
 		}
 	}
+}
+
+.course {
+	@extend .label;
+	font-size: 15px;
+	padding: 10px;
+	display: inline-block;
+}
+
+.semester {
+	@extend .label;
+	font-size: 20px;
+	padding: 20px;
+	display: inline-block;
+}
+
+.semester-h-c-k-1 {
+	background-color: #E91E63;
+}
+
+.semester-h-c-k-2 {
+	background-color: #00BCD4;
+}
+
+.btn-none {
+	@extend .btn;
+	padding: 0;
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+
+.mt-15 {
+	margin-top: -15px;
+}
+
+.center {
+	text-align: center;
 }

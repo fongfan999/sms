@@ -7,6 +7,13 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <style>
+    <% Course.all.each do |course| %>
+      .course-<%= course.name.parameterize %> {
+        background-color: <%= course.color %>;
+      }
+    <% end %>
+  </style>
 </head>
 <body>
   
@@ -26,10 +33,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
+        <li class="active"><a href="#">Trang chủ</a></li>
+        <li><a href="#">Thông báo</a></li>
+        <li><a href="#">Quy định</a></li>
+        <li><a href="#">Kế hoạch năm</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

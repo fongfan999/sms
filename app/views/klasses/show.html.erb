@@ -37,7 +37,8 @@
 	<h3>Danh sách học sinh</h3>
 
 	<ul class="actions">
-    <li><%= link_to "Bảng điểm", klass_scores_path(@klass),
+    <li><%= link_to "Bảng điểm",
+    	klass_semester_course_scores_path(@klass, Semester.first, Course.first),
     	class: "scoreboard" %></li>
 		<li><%= link_to "Thêm mới", new_klass_student_path(@klass),
       class: "new" %></li>
@@ -75,7 +76,7 @@
     </table>
   </div>
 <% else %>
-  <p>There is nothing to show.</p>
+  <p>Hiện tại chưa có dữ liệu.</p>
 <% end %>
 
 <%= link_to "Trở về", :back, class: "back" %>

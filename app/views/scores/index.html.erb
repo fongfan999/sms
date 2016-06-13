@@ -1,30 +1,55 @@
 <%= title("Bảng điểm lớp #{@klass.name}") %>
 
 <header>
-  <h2>Bảng điểm lớp <%= @klass.name %></h2>
+  <h2>Lớp <%= @klass.name %></h2>
 </header>
 
-<% if @scores.present? %>
-  <div class="listing-index">
+<header>
+  <h3 class="mt-15"><%= @semester.name %></h3>
+  <% Semester.all.each do |semester| %>
+    <%= link_to render(semester),
+      klass_semester_course_scores_path(@klass, semester, @course),
+      class: @semester.id == semester.id ? "btn-none disabled" : "btn-none" %>
+  <% end %>
+  <h4>Môn: <%= @course.name %></h4>
+  <% Course.all.each do |course| %>
+    <%= link_to render(course),
+      klass_semester_course_scores_path(@klass, @semester, course),
+      class: @course.id == course.id ? "btn-none disabled" : "btn-none"  %>
+  <% end %>
+</header>
+
+<% klass_semester_course_scores_path(@klass, Semester.first, Course.first) %>
+
+<% if @details.present? %>
+  <h5 class="center">Bảng điểm</h5>
+  <div class="listing-index icon-only">
     <table>
       <thead>
         <tr>
           <th>STT</th>
-          <th>Lớp</th>
-          <th>Khối</th>
-          <th>Tổng số học sinh</th>
+          <th>Họ và tên</th>
+          <th>Điểm 15'</th>
+          <th>Điểm 45'</th>
+          <th>Điểm cuối kỳ</th>
+          <th>Điểm trung bình</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <% @klasses.each_with_index do |klass, index| %>
+        <% @details.each_with_index do |detail, index| %>
         <tr>
-          <td><%= link_to index + 1, klass %></td>
-          <td><%= klass.name %></td>
-          <td><%= klass.grade.name %></td>
-          <td><%= klass.students_count %></td>
-          <td><%= link_to 'Sửa', [:edit, :admin, klass], class: "edit" %>
-          <%= link_to 'Xóa', [:admin, klass], method: :delete, data: { confirm: 'Bạn đã chắc chưa?' }, class: "delete" %></td>
+          <td><%= link_to index + 1, "#" %></td>
+          <td><%= detail.score.student.name %></td>
+          <td><%= detail.audition %></td>
+          <td><%= detail.semi_final %></td>
+          <td><%= detail.final %></td>
+          <td><%= detail.score.gpa %></td>
+          <td>
+            <%= link_to '', "#", class: "edit" %>
+            <%= link_to '', "#", method: :delete,
+              data: { confirm: 'Bạn đã chắc chưa?' }, class: "reset" %>
+          </td>
         </tr>
         <% end %>
       </tbody>
