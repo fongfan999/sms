@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
     resources :semesters, only: [] do
       resources :courses, only: [] do
-        resources :scores
+        resources :details, only: [:index, :edit, :update] do
+          member do
+            patch :reset_score
+          end
+        end
       end
     end
   end

@@ -26,6 +26,7 @@ body a {
 	margin-top: 6px;
 	margin-right: 10px;
 }
+
 div.tooltip-inner {
   font-size: 20px;
 }
@@ -212,4 +213,14 @@ a.reset {
 
 .center {
 	text-align: center;
+}
+
+.input-score {
+	min-width: 125px !important;
+	width: 125px !important;
+	padding-bottom: 0 !important;
+
+	input {
+		text-align: center;
+	}
 }

@@ -19,6 +19,7 @@
 //= require flat-ui/flatui-radio
 
 $(document).ready(function() {
+  // Hide messages after 5s
 	setTimeout(
     function() {
      $(".alert").fadeOut();
@@ -26,6 +27,7 @@ $(document).ready(function() {
     5000
   );
 
+  // Fix Flat UI Radio
   var tmp = $(".radio").find("label");
   if (tmp.length) {
     if ($(".gender").data("id")) {
@@ -38,4 +40,7 @@ $(document).ready(function() {
 
     $(".radio label").css("margin-top", "-8px");
   };
+
+  // Create Tooltips
+  $('[data-toggle="tooltip"]').tooltip(); 
 });
