@@ -15,7 +15,14 @@ Rails.application.routes.draw do
       resources :courses, only: [] do
         resources :details, only: [:index, :edit, :update] do
           member do
-            patch :reset_score
+            patch :reset
+          end
+
+          collection do
+            get :edit_all
+            post :update_all
+
+            patch :reset_all
           end
         end
       end

@@ -1,29 +1,4 @@
-<%= title("Bảng điểm lớp #{@klass.name}") %>
-
-<header>
-  <h2>Lớp <%= @klass.name %></h2>
-</header>
-
-<header>
-  <h3 class="mt-40 mw100 center"><%= @semester.name %></h3>
-  <h4 class="mw100 center">Môn: <%= @course.name %></h4>
-  <h6 class="mw100 center">
-  <% Semester.all.each do |semester| %>
-    <%= link_to render(semester),
-      klass_semester_course_details_path(@klass, semester, @course),
-      class: @semester.id == semester.id ? "btn-none disabled" : "btn-none" %>
-  <% end %>
-  </h6>
-  <h6 class="mw100 center">
-  <% Course.all.each do |course| %>
-    <%= link_to render(course),
-      klass_semester_course_details_path(@klass, @semester, course),
-      class: @course.id == course.id ? "btn-none disabled" : "btn-none"  %>
-  <% end %>
-  </h6>
-</header>
-
-<% klass_semester_course_details_path(@klass, Semester.first, Course.first) %>
+<%= render "header" %>
 
 <% if @details.present? %>
   <h5 class="center">Bảng điểm</h5>
@@ -37,7 +12,8 @@
           <th>Điểm 45'</th>
           <th>Điểm Cuối kỳ</th>
           <th>Điểm TB</th>
-          <th></th>
+          <th><%= link_to '', edit_all_klass_semester_course_details_path(
+            @klass, @semester, @course), class: "edit" %></th>
         </tr>
       </thead>
       <tbody>
@@ -89,4 +65,5 @@
   <p>Hiện tại chưa có dữ liệu.</p>
 <% end %>
 
-<%= link_to "Trở về", :back, class: "back" %>
+<%= link_to "Trở về", klass_semester_course_details_path(@klass, @semester,
+  @course), class: "back" %>

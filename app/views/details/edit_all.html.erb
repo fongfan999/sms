@@ -1,0 +1,50 @@
+<%= render "header" %>
+
+<% if @details.present? %>
+  <h5 class="center">Bảng điểm</h5>
+  <div class="listing-index icon-only">
+  	<%= simple_form_for :update_all,
+      url: update_all_klass_semester_course_details_path, method: :post, html: { class: "center full_width" } do |f| %>
+	    <table>
+	      <thead>
+	        <tr>
+	          <th>STT</th>
+	          <th>Họ và tên</th>
+	          <th>Điểm 15'</th>
+	          <th>Điểm 45'</th>
+	          <th>Điểm Cuối kỳ</th>
+	          <th>Điểm TB</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+        	<% @details.each_with_index do |detail, index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= detail.score.student.name %></td>
+
+							<%= f.simple_fields_for "detail[]", detail do |d| %>
+              <td class="input-score">
+                <%= d.input :audition, label: false, autofocus: index == 0 %>
+              </td>
+              <td class="input-score">
+                <%= d.input :semi_final, label: false %>
+              </td>
+              <td class="input-score">
+                <%= d.input :final, label: false %>
+              </td>
+							<% end %>
+
+              <td class="input-score"><%= detail.gpa %></td>
+            </tr>
+          <% end %>
+			    </tbody>
+			  </table>
+      <%= f.button :submit, value: "Cập nhật Tất cả", class: "btn-success" %>
+    <% end %>
+  </div>
+<% else %>
+  <p>Hiện tại chưa có dữ liệu.</p>
+<% end %>
+
+<%= link_to "Trở về", klass_semester_course_details_path(@klass, @semester,
+  @course), class: "back" %>
