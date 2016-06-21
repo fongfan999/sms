@@ -5,11 +5,11 @@ Rails.application.routes.draw do
     root 'application#index'
 
     resources :klasses, except: [:show]
-    resources :students, only: [:index]
+    resources :students, only: [:index, :destroy]
   end
 
   resources :klasses, only: [:show] do
-    resources :students, except: [:index]
+    resources :students, except: [:index, :destroy]
 
     resources :semesters, only: [] do
       resources :courses, only: [] do

@@ -15,5 +15,9 @@ class Detail < ActiveRecord::Base
   def cal_gpa
   	result = ((audition + semi_final * 2 + final * 3)/6).round(1)
   	self.update_columns(gpa: result)
+
+    gpa = score.details.inject(0) { |result, detail| result += detail.gpa }
+    gpa = (gpa/Course.count).round(1)
+    score.update(gpa: gpa)
   end
 end

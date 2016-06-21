@@ -10,7 +10,7 @@
 	<%= f.input :address, label: "Địa chỉ" %>
 	<%= f.input :email, label: "Địa chỉ e-mail" %>
 
-	<%= f.association :klass unless student.new_record? %><br/>
+	<%= f.association :klass, include_blank: false unless student.new_record? %><br/>
 
 	<%= f.button :submit, value: student.new_record? ? "Tạo" : "Cập nhật",
 		class: "btn-success" %>

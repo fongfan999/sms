@@ -64,8 +64,8 @@
         	<td><%= link_to index + 1, [@klass, student] %></td>
 	        <td><%= student.name %></td>
 	        <td><%= student.id_code %></td>
-	        <td>0.0</td>
-	        <td>0.0</td>
+	        <td><%= student.semester_gpa(1) %> <%= student.ability(1) %></td>
+	        <td><%= student.semester_gpa(2) %> <%= student.ability(2) %></td>
 	        <td>
 	        	<%= link_to '', [:edit, @klass, student], class: "edit" %>
 	        	<%= link_to '', [@klass, student], method: :delete,

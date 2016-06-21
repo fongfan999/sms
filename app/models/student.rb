@@ -16,6 +16,14 @@ class Student < ActiveRecord::Base
   	last_name + " " + first_name
   end
 
+  def semester_gpa(semester_id)
+    scores.find_by(semester_id: semester_id).gpa
+  end
+
+  def ability(semester_id)
+    semester_gpa(semester_id) < 5 ? "(Không Đạt)" : "(Đạt)"
+  end
+
   private
 
   def initialize_scores

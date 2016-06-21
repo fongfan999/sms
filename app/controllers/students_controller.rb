@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_klass
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [:show, :edit, :update]
 
   # GET /students/1
   def show
@@ -39,14 +39,6 @@ class StudentsController < ApplicationController
       flash.now[:alert] = "Student was successfully updated."
       render :edit
     end
-  end
-
-  # DELETE /students/1
-  def destroy
-    @student.destroy
-    
-    flash[:notice] = "Student was successfully destroyed."
-    redirect_to klass_students_path
   end
 
   private
