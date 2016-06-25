@@ -22,6 +22,10 @@ body a {
 	-ms-transition:0.3s all;
 }
 
+.btn, input, textarea, select {
+	border-radius: 1px !important;
+}
+
 .navbar-header img {
 	margin-top: 6px;
 	margin-right: 10px;
@@ -183,6 +187,7 @@ a.reset {
 	font-size: 17px;
 	padding: 10px;
 	display: inline-block;
+	border-radius: 1px;
 }
 
 .semester {
@@ -190,6 +195,7 @@ a.reset {
 	font-size: 20px;
 	padding: 20px;
 	display: inline-block;
+	border-radius: 1px;
 }
 
 .semester-h-c-k-1 {

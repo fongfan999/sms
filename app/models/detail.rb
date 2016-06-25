@@ -8,8 +8,12 @@ class Detail < ActiveRecord::Base
 
   after_update :cal_gpa
 
-  scope :contain, ->(scores, course) do
-  	where("score_id IN (?) AND course_id = ?", scores.map(&:id), course.id)
+  scope :contain, ->(scores, course, single = false) do
+    if single
+      where(score_id: scores.id, course_id: course.id).first
+    else
+      where("score_id IN (?) AND course_id = ?", scores.map(&:id), course.id)
+    end
   end
 
   def cal_gpa

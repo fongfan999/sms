@@ -63,7 +63,7 @@ class DetailsController < ApplicationController
       @course)
   end
 
-	private
+  private
 
   def set_klass
     @klass = Klass.find(params[:klass_id])
@@ -79,7 +79,7 @@ class DetailsController < ApplicationController
 
   def set_details
   	@scores = @klass.scores(@semester)
-		@details = Detail.contain(@scores, @course)
+	@details = Detail.contain(@scores, @course)
   end
 
   def set_detail

@@ -4,6 +4,8 @@ class StudentsController < ApplicationController
 
   # GET /students/1
   def show
+    @scores = @student.scores
+    @courses = Course.all
   end
 
   # GET /students/new

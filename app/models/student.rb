@@ -16,6 +16,10 @@ class Student < ActiveRecord::Base
   	last_name + " " + first_name
   end
 
+  def to_gender
+    gender ? "Nam" :  "Nữ"
+  end
+
   def semester_gpa(semester_id)
     scores.find_by(semester_id: semester_id).gpa
   end
