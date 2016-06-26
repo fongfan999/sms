@@ -1,7 +1,7 @@
 class Score < ActiveRecord::Base
-  belongs_to :student
-  belongs_to :semester
-  has_many :details, dependent: :destroy
+	belongs_to :student
+	belongs_to :semester
+	has_many :details, dependent: :destroy
 	has_many :courses, through: :details
 	belongs_to :mark
 	belongs_to :conduct
@@ -11,6 +11,18 @@ class Score < ActiveRecord::Base
 	# end
 
 	after_update :determine_mark
+
+	def to_name(str)
+		if str == "mark"
+			mark.nil? ? "abc" : mark.name
+		else
+			conduct.nil? ? "xyz" : conduct.name
+		end
+	end
+
+	def ability
+		to_name("mark")
+	end
 
 	private
 

@@ -24,6 +24,10 @@
 		<td><%= @klass.students_count %></td>
 	</tr>
 	<tr>
+		<th>Giáo viên chủ nhiệm</th>
+		<td><%= link_to "##", "#" %></td>
+	</tr>
+	<tr>
 		<th>Ngày tạo</th>
 		<td><%= format_date(@klass.created_at) %></td>
 	</tr>
@@ -64,8 +68,8 @@
         	<td><%= link_to index + 1, [@klass, student] %></td>
 	        <td><%= student.name %></td>
 	        <td><%= student.id_code %></td>
-	        <td><%= student.semester_gpa(1) %> <%= student.ability(1) %></td>
-	        <td><%= student.semester_gpa(2) %> <%= student.ability(2) %></td>
+	        <td><%= student.semester_gpa(Semester.find(1)) %></td>
+	        <td><%= student.semester_gpa(Semester.find(2)) %></td>
 	        <td>
 	        	<%= link_to '', [:edit, @klass, student], class: "edit" %>
 	        	<%= link_to '', [@klass, student], method: :delete,
@@ -78,5 +82,5 @@
 <% else %>
   <p>Hiện tại chưa có dữ liệu.</p>
 <% end %>
-
+	
 <%= link_to "Trở về", admin_klasses_path, class: "back" %>
