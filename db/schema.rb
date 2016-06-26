@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621134414) do
+ActiveRecord::Schema.define(version: 20160626112251) do
 
   create_table "conducts", force: :cascade do |t|
     t.string   "name"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 20160621134414) do
     t.string   "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.integer  "max_quantity", default: 40
+    t.integer  "max_age",      default: 20
+    t.integer  "min_age",      default: 15
+    t.float    "max_point",    default: 10.0
+    t.float    "min_point",    default: 0.0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "scores", force: :cascade do |t|

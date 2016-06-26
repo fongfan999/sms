@@ -221,6 +221,13 @@ a.reset {
 	text-align: center;
 }
 
+.bdbtable {
+	td {
+		padding: 30px;
+		border-bottom: 1px solid #34495e;
+	}
+}
+
 .input-score {
 	min-width: 125px !important;
 	width: 125px !important;

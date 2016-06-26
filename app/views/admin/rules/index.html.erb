@@ -1,0 +1,78 @@
+<%= title("Quy định") %>
+
+<header>
+  <h2>Quy định</h2>
+  <ul class="actions">
+    <li><%= link_to "Sửa tất cả", [:edit, :admin, @rule], class: "edit" %></li>
+  </ul>
+</header>
+
+
+<table class="bdbtable">
+  <tbody>
+    <tr>
+      <td><strong>Số lượng học sinh tối đa mỗi lớp</strong>: 
+        <b><%= @rule.max_quantity %></b>
+      </td>
+      <td>
+        <%= link_to 'Sửa', "#", class: "edit" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Số tuổi được phép</strong>: <br/>
+        <ul>
+          <li>Tuổi tối thiểu: <b><%= @rule.min_age %></b></li>
+          <li>Tuổi tối đa: <b><%= @rule.max_age %></li></b></li>
+        </ul>
+      </td>
+      <td>
+        <%= link_to 'Sửa', "#", class: "edit" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Điểm số được phép</strong>: <br/>
+
+        <ul>
+          <li>Điểm tối thiểu: <b><%= @rule.min_point %></b></li>
+          <li>Điểm tối đa: <b><%= @rule.max_point %></b></li>
+        </ul>
+      </td>
+      <td>
+        <%= link_to 'Sửa', "#", class: "edit" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Danh hiệu học sinh</strong>: <br/><br/>
+
+        <div class="listing-index">
+          <table>
+            <thead>
+              <tr>
+                <th>Học lực</th>
+                <th>Hạnh kiểm</th>
+                <th>Danh hiệu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for i in 1..5 %>
+                <tr>
+                  <td><%= Mark.find(i).name %></td>
+                  <td><%= Conduct.find(i).name %></td>
+                  <td><%= Mark.find(i).name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </td>
+      <td>
+        <%= link_to 'Sửa', "#", class: "edit" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to "Trở về", admin_root_path, class: "back" %>

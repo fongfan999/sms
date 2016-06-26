@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     resources :klasses, except: [:show]
     resources :students, only: [:index, :destroy]
+    resources :rules, only: [:index, :edit, :update]
   end
 
   resources :klasses, only: [:show] do
