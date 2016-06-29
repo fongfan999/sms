@@ -20,7 +20,7 @@
         <% @details.each_with_index do |detail, index| %>
           <% if @detail == detail %>
             <%= simple_form_for @detail,
-              url: klass_semester_course_detail_path(@klass, @semester, @course,
+              url: klass_semester_course_detail_path(@klass, @semester,@course,
                 @detail) do |f| %>
               <tr>
                 <td><%= index + 1 %></td>

@@ -1,9 +1,15 @@
 <%= simple_form_for [:admin, @rule] do |f| %>
-  <%= f.input :max_quantity, label: "Số lượng học sinh tối đa mỗi lớp" %>
-  <%= f.input :min_age, label: "Tuổi tối thiểu" %>
-  <%= f.input :max_age, label: "Tuổi tối đa" %>
-  <%= f.input :min_point, label: "Điểm tối thiểu" %>
-  <%= f.input :max_point, label: "Điểm tối đa" %>
+  <% if @attr.nil? || @attr.include?("max_quantity") %>
+    <%= f.input :max_quantity, label: "Số lượng học sinh tối đa mỗi lớp" %>
+  <% end %>
+  <% if @attr.nil? || @attr.include?("min_age") %>
+    <%= f.input :min_age, label: "Tuổi tối thiểu" %>
+    <%= f.input :max_age, label: "Tuổi tối đa" %>
+  <% end %>
+  <% if @attr.nil? || @attr.include?("min_point") %>
+    <%= f.input :min_point, label: "Điểm tối thiểu" %>
+    <%= f.input :max_point, label: "Điểm tối đa" %>
+  <% end %>
 
   <%= f.button :submit, value: "Cập nhật", class: "btn-success" %>
 <% end %>

@@ -5,6 +5,7 @@ class Admin::RulesController < Admin::ApplicationController
 
   def edit
     @rule = Rule.find(params[:id])
+    @attr = params[:attr]
   end
 
   def update
@@ -19,5 +20,22 @@ class Admin::RulesController < Admin::ApplicationController
       flash.now[:alert] = "Rule has not been successfully updated."
       render :edit
     end
+  end
+
+  def edit_ability
+    @marks = Mark.all
+    @conducts = Conduct.all
+  end
+
+  def update_ability
+    new_params = params.require(:update_ability).require(:marks)
+    new_params.each do |param|
+      mark = Mark.find(param[0])
+      mark.conducts.delete_all
+      mark.conducts << Conduct.find(param[1]["conduct"])
+    end
+
+    flash[:notice] = "Rule has been successfully updated."
+    redirect_to admin_rules_path
   end
 end

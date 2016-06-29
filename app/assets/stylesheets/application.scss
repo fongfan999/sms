@@ -221,11 +221,29 @@ a.reset {
 	text-align: center;
 }
 
+.tiny {
+	font-size: 13px;
+  display: block;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+.mb0 {
+	margin-bottom: 0;
+	
+	.select {
+		margin-bottom: 0px;
+	}
+}
+
 .bdbtable {
 	td {
 		padding: 30px;
 		border-bottom: 1px solid #34495e;
+		width: 100%;
 	}
+
+	margin-bottom: 50px;
 }
 
 .input-score {
@@ -236,4 +254,5 @@ a.reset {
 	input {
 		text-align: center;
 	}
+
 }

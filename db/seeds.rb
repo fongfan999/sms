@@ -96,21 +96,26 @@ end
 
 # Initialize Mark
 unless Mark.exists?(name: "Giỏi")
-	Mark.create(name: "Giỏi", point: 8, color: "#004D40")
+	mark = Mark.create(name: "Giỏi", point: 8, color: "#004D40")
+	mark.conducts << Conduct.find(1)
 end
 
 unless Mark.exists?(name: "Khá")
-	Mark.create(name: "Khá", point: 6.5, color: "#00695C")
+	mark = Mark.create(name: "Khá", point: 6.5, color: "#00695C")
+	mark.conducts << Conduct.find(2)
 end
 
 unless Mark.exists?(name: "Trung Bình")
-	Mark.create(name: "Trung Bình", point: 5, color: "#00796B")
+	mark = Mark.create(name: "Trung Bình", point: 5, color: "#00796B")
+	mark.conducts << Conduct.find(3)
 end
 
 unless Mark.exists?(name: "Yếu")
-	Mark.create(name: "Yếu", point: 3.5, color: "#00897B")
+	mark = Mark.create(name: "Yếu", point: 3.5, color: "#00897B")
+	mark.conducts << Conduct.find(4)
 end
 
 unless Mark.exists?(name: "Kém")
-	Mark.create(name: "Kém", point: 0, color: "#009688")
+	mark = Mark.create(name: "Kém", point: 0, color: "#009688")
+	mark.conducts << Conduct.find(5)
 end
