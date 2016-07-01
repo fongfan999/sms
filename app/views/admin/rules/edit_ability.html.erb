@@ -4,28 +4,34 @@
   <h2 class="mw100">Chỉnh sửa Quy định Danh hiệu</h2>
 </header>
 
-<div class="listing-index icon-only">
+<div class="listing-index">
   <%= simple_form_for :update_ability,
-  url: update_ability_admin_rules_path, method: :post do |f|%>
-    <table>
-      <thead>
-        <tr>
-          <th>Danh hiệu</th>
-          <th>Học lực <span class="tiny">(Trở lên)</span></th>
-          <th>Hạnh kiểm <span class="tiny">(Trở lên)</span></th>
-        </tr>
-      </thead>
-      <tbody>
+  url: update_ability_admin_rules_path, method: :post,
+  html: { class: "center full_width" } do |f|%>
+  <table>
+    <thead>
+      <tr>
+        <th>Danh hiệu</th>
         <% @marks.each do |mark| %>
-          <tr>
-            <%= f.simple_fields_for "marks[]", mark do |m| %>
-              <td><%= mark.name %></td>
-              <td class="input-score"><%= m.input :point, label: false %></td>
-              <td class="mb0"><%= m.input :conduct, label: false, collection: Conduct.all,
-                include_blank:false, selected: mark.conducts.first.id %></td>
-            <% end %>
-          </tr>
+          <td><%= mark.name %></td>
         <% end %>
+      </tr>
+    </thead>
+      <tbody>
+        <tr>
+          <th class="center">Học lực <span class="tiny">(Trở lên)</span></th>
+          <% @marks.each do |mark| %>
+            <%= f.simple_fields_for "marks[]", mark do |m| %>
+              <td class="input-score"><%= m.input :point, label: false %></td>
+            <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <th class="center">Hạnh kiểm <span class="tiny">(Trở lên)</span></th>
+          <% @conducts.each do |conduct| %>
+            <td><%= conduct.name %></td>
+          <% end %>
+        </tr>
       </tbody>
     </table>
 

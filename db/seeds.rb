@@ -119,3 +119,7 @@ unless Mark.exists?(name: "Kém")
 	mark = Mark.create(name: "Kém", point: 0, color: "#009688")
 	mark.conducts << Conduct.find(5)
 end
+
+unless Rule.count > 0
+	Rule.create
+end

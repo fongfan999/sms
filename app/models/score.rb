@@ -6,17 +6,13 @@ class Score < ActiveRecord::Base
 	belongs_to :mark
 	belongs_to :conduct
 
-	# scope :ordered, -> do
-	# 	includes(:student).order("students.first_name")
-	# end
-
 	after_update :determine_mark
 
 	def to_name(str)
 		if str == "mark"
-			mark.nil? ? "abc" : mark.name
+			mark_id.nil? ? "Chưa cập nhật" : Mark.find(mark_id).name
 		else
-			conduct.nil? ? "xyz" : conduct.name
+			conduct.nil? ? "Chưa cập nhật" : conduct.name
 		end
 	end
 
@@ -24,12 +20,23 @@ class Score < ActiveRecord::Base
 		to_name("mark")
 	end
 
-	private
-
 	def determine_mark
-		Mark.order(point: :desc).each do |record|
+		Mark.all.each do |record|
+			position_of_mark = record.id
+			position_of_mark -= 5 if Mark.count == 10
+
 			if self.gpa >= record.point
-				self.update_columns(mark_id: record.id)
+				if self.conduct_id.nil?
+					self.update_columns(mark_id: record.id)
+				else
+					if position_of_mark >= self.conduct_id
+						self.update_columns(mark_id: record.id)
+					else
+						position_of_mark = self.conduct_id
+						position_of_mark += 5 if Mark.count == 10
+						self.update_columns(mark_id: position_of_mark)						
+					end
+				end  
 				break
 			end
 		end

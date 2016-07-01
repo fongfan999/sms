@@ -1,8 +1,9 @@
 <%= simple_form_for [klass, student] do |f| %>
-	<%= f.input :last_name, label: "Họ" %>
+	<%= f.input :last_name, label: "Họ và Tên lót" %>
 	<%= f.input :first_name, label: "Tên" %>
 	<%= f.input :date_of_birth, label: "Ngày sinh", order: [:day, :month, :year],
-		start_year: Date.today.year - 25, end_year: Date.today.year - 15 %>
+		start_year: Date.today.year - student.get_max_age,
+		end_year: Date.today.year - student.get_min_age %>
 	<span class="gender" data-id="<%= student.gender %>">
 	<%= f.input :gender, label: "Giới tính", as: :radio_buttons,
 		collection: [['Nam', true] ,['Nữ', false]] %>

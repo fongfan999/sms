@@ -1,6 +1,6 @@
 class Admin::RulesController < Admin::ApplicationController
   def index
-    @rule = Rule.first || Rule.create
+    @rule = Rule.first
   end
 
   def edit
@@ -28,14 +28,19 @@ class Admin::RulesController < Admin::ApplicationController
   end
 
   def update_ability
-    new_params = params.require(:update_ability).require(:marks)
-    new_params.each do |param|
-      mark = Mark.find(param[0])
-      mark.conducts.delete_all
-      mark.conducts << Conduct.find(param[1]["conduct"])
+    marks_params = params.require(:update_ability).require(:marks).permit!
+    results = Mark.update(marks_params.keys,
+      marks_params.values).reject { |m| m.errors.empty? }
+
+    if results.empty?
+      flash[:notice] = "Rule has been successfully updated."
+      redirect_to admin_rules_path
+    else
+      flash.now[:alert] = "Rule has not been successfully updated."
+      @marks = Mark.all - results + results
+      @conducts = Conduct.all
+      render :edit_ability
     end
 
-    flash[:notice] = "Rule has been successfully updated."
-    redirect_to admin_rules_path
   end
 end

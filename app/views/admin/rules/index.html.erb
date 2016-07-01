@@ -75,10 +75,10 @@
           </tr>
         </thead>
         <tbody>
-          <% Mark.all.each do |mark| %>
+          <% Mark.all.each_with_index do |mark, index| %>
             <tr>
-              <td><%= mark.name %></td>
-              <td><%= mark.conducts.first.name %></td>
+              <td><%= mark.name %><br/><span class="tiny">(<%= mark.point %> Trở lên)</span></td>
+              <td><%= Conduct.find(index + 1).name %></td>
               <td><%= mark.name %></td>
             </tr>
           <% end %>
