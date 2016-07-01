@@ -26,7 +26,7 @@ class Mark < ActiveRecord::Base
 
   def determine_ability
     Score.all.each do |score|
-      score.determine_mark
+      score.determine_ability
     end
   end
 end

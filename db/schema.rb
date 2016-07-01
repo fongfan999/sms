@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626112251) do
+ActiveRecord::Schema.define(version: 20160701151703) do
 
   create_table "conducts", force: :cascade do |t|
     t.string   "name"
@@ -85,8 +85,10 @@ ActiveRecord::Schema.define(version: 20160626112251) do
     t.datetime "updated_at",                null: false
     t.integer  "mark_id"
     t.integer  "conduct_id"
+    t.integer  "ability_id"
   end
 
+  add_index "scores", ["ability_id"], name: "index_scores_on_ability_id"
   add_index "scores", ["conduct_id"], name: "index_scores_on_conduct_id"
   add_index "scores", ["mark_id"], name: "index_scores_on_mark_id"
   add_index "scores", ["semester_id"], name: "index_scores_on_semester_id"

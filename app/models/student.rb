@@ -34,7 +34,11 @@ class Student < ActiveRecord::Base
 	def semester_gpa(semester)
 		score = self.scores.find_by(semester_id: semester.id)
 
-		"#{score.gpa} (#{score.mark.name})"
+		if score.ability.nil?
+			score.gpa
+		else
+			"#{score.gpa} (#{score.ability.name})"
+		end
 	end
 
 	def get_min_age
