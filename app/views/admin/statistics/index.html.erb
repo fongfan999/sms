@@ -1,0 +1,44 @@
+<%= title("Thống kê học sinh") %>
+
+<header>
+  <h2>Thống kê học sinh</h2>
+  <h6><strike>Thống kê Giáo viên</strike></h6>
+  <strike>Filter</strike>
+  <ol>
+    <li>Gender</li>
+    <li>Age</li>
+    <li>Grade</li>
+    <li>Class</li>
+  </ol>
+</header>
+
+<header>
+  <h4>Giới tính và Năm sinh</h4>
+</header>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= pie_chart Student.gender_chart, colors: ["#ff0777", "#0698ff"],
+      library: { pieHole: 0.3,
+      title: "Giới tính" } %>
+  </div>
+  <div class="col-md-6">
+    <%= pie_chart Student.age_chart, library: { pieHole: 0.3,
+      title: "Năm sinh" } %>
+  </div>
+</div>
+
+<header>
+  <h4>Danh hiệu</h4>
+</header>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= pie_chart Score.ability_chart(1), library: { is3D: true,
+      title: "Học kỳ 1" } %>
+  </div>
+  <div class="col-md-6">
+    <%= pie_chart Score.ability_chart(2), library: { is3D: true,
+      title: "Học kỳ 2" } %>
+  </div>
+</div>

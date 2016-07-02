@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+  get 'statistics/index'
+  end
+
   devise_for :users
 
   namespace :admin do
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
         post :update_ability
       end
     end
+    resources :statistics, only: [:index]
   end
 
   resources :klasses, only: [:show] do

@@ -18,11 +18,11 @@
   <tbody>
     <% @students.each_with_index do |student, index| %>
       <tr>
-        <td><%= link_to index + 1, "<div id=""></div>" %></td>
+        <td><%= link_to index + 1, [student.klass, student] %></td>
         <td><%= student.name %></td>
         <td><%= student.klass.name %></td>
-        <td><%= (rand*10).round(2) %></td>
-        <td><%= (rand*10).round(2) %></td>
+        <td><%= student.semester_gpa(Semester.find(1)) %></td>
+        <td><%= student.semester_gpa(Semester.find(2)) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
   <p>Hiện tại chưa có dữ liệu.</p>
 <% end %>
 
-<%= link_to "Trở về", :back, class: "back" %>
+<%= link_to "Trở về", admin_root_path, class: "back" %>

@@ -40,6 +40,7 @@ gem 'devise', '~> 4.1', '>= 4.1.1'
 gem 'will_paginate', '~> 3.1'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'flat-ui-sass', github: 'wingrunr21/flat-ui-sass'
+gem "chartkick"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

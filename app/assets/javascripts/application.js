@@ -17,6 +17,8 @@
 //= require flat-ui
 //= require flat-ui/flatui-checkbox
 //= require flat-ui/flatui-radio
+//= require jsapi
+//= require chartkick
 
 $(document).ready(function() {
   // Hide messages after 5s

@@ -5,14 +5,23 @@ class Student < ActiveRecord::Base
 	has_many :scores, dependent: :destroy
 	has_many :semesters, through: :scores
 
-	validates :first_name, presence: true, length: { minimum: 1, maximum: 7 }
-	validates :last_name, presence: true, length: { minimum: 3, maximum: 28 }
+	validates :first_name, presence: true, length: { maximum: 7 }
+	validates :last_name, presence: true, length: { maximum: 28 }
 	validates :date_of_birth, presence: true
-	validates :gender, presence: true
 	validates :klass_id, presence: true
 	validate :max_students_in_the_class
 	validate :min_student_age
 	validate :max_student_age
+
+	scope :gender_chart, -> do
+		mappings = { false => "Nữ", true => "Nam" }
+		Student.group(:gender).count.map { |k, v| [mappings[k], v] }
+	end
+
+	scope :age_chart, -> do
+		results = Student.all.group_by { |s| s.date_of_birth.year }
+		results.sort_by { |k, v| k }.map { |k, v| [k, v.count] }
+	end
 
 	after_create :initialize_scores
 

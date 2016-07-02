@@ -1,17 +1,16 @@
 class Mark < ActiveRecord::Base
 	has_many :scores
-  has_and_belongs_to_many :conducts
   validate :minimum_point
   validate :maximum_point
 
   after_update :determine_ability
 
   def get_mimimum_point
-    Rule.find(1).min_point
+    Rule.count != 0 ? Rule.find(1).min_point : 0
   end
 
   def get_maximum_point
-    Rule.find(1).max_point
+    Rule.count != 0 ? Rule.find(1).max_point : 10
   end
 
   private

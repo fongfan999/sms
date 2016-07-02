@@ -8,15 +8,21 @@
 
 # Initialize Grade
 unless Grade.exists?(name: "Khối 10")
-	Grade.create(name: "Khối 10")
+	grade = Grade.create(name: "Khối 10")
+	Klass.create(name: "10A1", grade: grade)
+	Klass.create(name: "10A2", grade: grade)
 end
 
 unless Grade.exists?(name: "Khối 11")
-	Grade.create(name: "Khối 11")
+	grade = Grade.create(name: "Khối 11")
+	Klass.create(name: "11A1", grade: grade)
+	Klass.create(name: "11A2", grade: grade)
 end
 
 unless Grade.exists?(name: "Khối 12")
-	Grade.create(name: "Khối 12")
+	grade = Grade.create(name: "Khối 12")
+	Klass.create(name: "12A1", grade: grade)
+	Klass.create(name: "12A2", grade: grade)
 end
 
 # Initialize Course
@@ -96,28 +102,23 @@ end
 
 # Initialize Mark
 unless Mark.exists?(name: "Giỏi")
-	mark = Mark.create(name: "Giỏi", point: 8, color: "#004D40")
-	mark.conducts << Conduct.find(1)
+	Mark.create(name: "Giỏi", point: 8, color: "#004D40")
 end
 
 unless Mark.exists?(name: "Khá")
-	mark = Mark.create(name: "Khá", point: 6.5, color: "#00695C")
-	mark.conducts << Conduct.find(2)
+	Mark.create(name: "Khá", point: 6.5, color: "#00695C")
 end
 
 unless Mark.exists?(name: "Trung Bình")
-	mark = Mark.create(name: "Trung Bình", point: 5, color: "#00796B")
-	mark.conducts << Conduct.find(3)
+	Mark.create(name: "Trung Bình", point: 5, color: "#00796B")
 end
 
 unless Mark.exists?(name: "Yếu")
-	mark = Mark.create(name: "Yếu", point: 3.5, color: "#00897B")
-	mark.conducts << Conduct.find(4)
+	Mark.create(name: "Yếu", point: 3.5, color: "#00897B")
 end
 
 unless Mark.exists?(name: "Kém")
-	mark = Mark.create(name: "Kém", point: 0, color: "#009688")
-	mark.conducts << Conduct.find(5)
+	Mark.create(name: "Kém", point: 0, color: "#009688")
 end
 
 unless Rule.count > 0
