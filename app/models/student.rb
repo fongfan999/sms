@@ -4,6 +4,9 @@ class Student < ActiveRecord::Base
 	belongs_to :klass, counter_cache: true
 	has_many :scores, dependent: :destroy
 	has_many :semesters, through: :scores
+	belongs_to :mark
+	belongs_to :conduct
+	belongs_to :ability, class_name: "Mark"
 
 	validates :first_name, presence: true, length: { maximum: 7 }
 	validates :last_name, presence: true, length: { maximum: 28 }
@@ -13,14 +16,24 @@ class Student < ActiveRecord::Base
 	validate :min_student_age
 	validate :max_student_age
 
-	scope :gender_chart, -> do
+	after_create :assign_student_code
+	after_update :determine_ability
+
+	scope :gender_filtered_chart, ->(params) do
 		mappings = { false => "Nữ", true => "Nam" }
-		Student.group(:gender).count.map { |k, v| [mappings[k], v] }
+		Student.ransack(params[:q]).result(distinct: true).group(:gender).count.map { |k, v| [mappings[k], v] }
 	end
 
-	scope :age_chart, -> do
-		results = Student.all.group_by { |s| s.date_of_birth.year }
+	scope :age_filtered_chart, ->(params) do
+		results = Student.ransack(params[:q]).result(distinct: true).group_by { |s| s.date_of_birth.year }
 		results.sort_by { |k, v| k }.map { |k, v| [k, v.count] }
+	end
+
+	scope :ability_filtered_chart, ->(params) do
+		mappings = { 1 => "Giỏi", 2 => "Khá", 3 => "Trung Bình", 4 => "Yếu",
+			5 => "Kém" }
+		results = Student.ransack(params[:q]).result(distinct: true).group(:ability_id).count
+		results.map { |k, v| [mappings[k], v] }
 	end
 
 	after_create :initialize_scores
@@ -30,6 +43,10 @@ class Student < ActiveRecord::Base
 		tail = "0"*4
 		tail.slice!("0"*length)
 		"1452#{tail}#{id}"
+	end
+
+	def assign_student_code
+		update_columns(student_code: id_code)
 	end
 
 	def name
@@ -47,6 +64,32 @@ class Student < ActiveRecord::Base
 			score.gpa
 		else
 			"#{score.gpa} (#{score.ability.name})"
+		end
+	end
+
+	def to_ability
+		if ability.nil?
+			final_gpa
+		else
+			"#{final_gpa} (#{ability.name})"
+		end
+	end
+
+	def determine_ability
+		Mark.all.each do |record|
+			if self.final_gpa >= record.point
+				self.update_columns(mark_id: record.id)
+				if self.conduct_id.nil?
+					self.update_columns(ability_id: record.id)
+				else
+					if record.id >= self.conduct_id
+						self.update_columns(ability_id: record.id)
+					else
+						self.update_columns(ability_id: conduct_id)						
+					end
+				end  
+				break
+			end
 		end
 	end
 

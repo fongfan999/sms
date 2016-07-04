@@ -39,6 +39,17 @@
 
 <header>
 	<h3>Danh sách học sinh</h3>
+  <div class="search-div">
+    <%= search_form_for @q, url: @klass,
+      html: { class: "form-inline" } do |f| %>
+    <%= f.search_field :student_code_or_first_name_or_last_name_cont,
+      class: "form-control", placeholder: "Nhập Tên, MSSV, ..." %>
+    
+    <button class='btn btn-search'>
+      Tìm kiếm
+    </button>
+  <% end %>
+  </div>
 
 	<ul class="actions">
     <li><%= link_to "Bảng điểm",
@@ -62,6 +73,7 @@
 		      <th>Mã số học sinh</th>
 		      <th>ĐTB HK1</th>
 		      <th>ĐTB HK2</th>
+          <th>ĐTB Cả năm</th>
 		      <th></th>
 		    </tr>
       </thead>
@@ -70,9 +82,10 @@
         <tr>
         	<td><%= link_to index + 1, [@klass, student] %></td>
 	        <td><%= student.name %></td>
-	        <td><%= student.id_code %></td>
+	        <td><%= student.student_code %></td>
 	        <td><%= student.semester_gpa(Semester.find(1)) %></td>
 	        <td><%= student.semester_gpa(Semester.find(2)) %></td>
+          <td><%= student.to_ability %></td>
 	        <td>
 	        	<%= link_to '', [:edit, @klass, student], class: "edit" %>
 	        	<%= link_to '', [@klass, student], method: :delete,

@@ -26,6 +26,9 @@ class Detail < ActiveRecord::Base
 		gpa = score.details.inject(0) { |result, detail| result += detail.gpa }
 		gpa = (gpa/Course.count).round(1)
 		score.update(gpa: gpa)
+
+		new_gpa = score.student.scores.inject(0) { |sum, s| sum += s.gpa } / 2
+		score.student.update(final_gpa: new_gpa.round(1))
 	end
 
 	def get_mimimum_point

@@ -3,13 +3,6 @@
 <header>
   <h2>Thống kê học sinh</h2>
   <h6><strike>Thống kê Giáo viên</strike></h6>
-  <strike>Filter</strike>
-  <ol>
-    <li>Gender</li>
-    <li>Age</li>
-    <li>Grade</li>
-    <li>Class</li>
-  </ol>
 </header>
 
 <header>
@@ -42,3 +35,12 @@
       title: "Học kỳ 2" } %>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= pie_chart Student.ability_chart, library: { is3D: true,
+      title: "Cả năm" } %>
+  </div>
+</div>
+
+<%= link_to "Trở về", admin_root_path, class: "back" %>

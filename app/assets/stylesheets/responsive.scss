@@ -22,7 +22,6 @@
 	a.edit, a.delete, a.reset {
 		margin-bottom: 5px;
 	}
-
 }
 
 @media(max-width: $screen-xs-max) {
@@ -33,4 +32,9 @@
 	.navbar-header img {
     margin-left: 20px;
   }
+
+  .btn-search {
+		margin-top: 5px;
+		width: 100%;
+	}
 }

@@ -1,6 +1,16 @@
 class Admin::StudentsController < Admin::ApplicationController
   def index
-    @students = Student.all
+    @q = Student.ransack(params[:q])
+    @students = @q.result(distinct: true)
+
+    @gender_chart = Student.gender_filtered_chart(params)
+    @age_chart = Student.age_filtered_chart(params)
+    @ability_chart = Student.ability_filtered_chart(params)
+  end
+
+  def search
+    index
+    render :index
   end
 
   # DELETE /students/1

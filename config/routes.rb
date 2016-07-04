@@ -9,7 +9,12 @@ Rails.application.routes.draw do
     root 'application#index'
 
     resources :klasses, except: [:show]
-    resources :students, only: [:index, :destroy]
+    resources :students, only: [:index, :destroy] do
+      collection do
+        get :search
+        post :search
+      end
+    end
     resources :rules, only: [:index, :edit, :update] do
       collection do
         get :edit_ability

@@ -1,6 +1,48 @@
+<%= title("Danh sách Học sinh") %>
+
 <header>
   <h2>Danh sách Học sinh</h2>
 </header>
+
+<%= simple_form_for @q, url: search_admin_students_path,
+  html: {class: "maw100 center"} do |f| %>
+  <div class="listing-index">
+    <table>
+      <thead>
+        <tr>
+          <th>Họ và Tên lót</th>
+          <th>Tên</th>
+          <th>Giới tính</th>
+          <th>Lớp</th>
+          <th colspan="2">ĐTB
+          
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="miw100"><%= f.input :last_name_cont, label: false,
+            placeholder: "Mặc định: Tất cả" %></td>
+          <td class="miw100"><%= f.input :first_name_cont, label: false,
+            placeholder: "Mặc định: Tất cả" %></td>
+          <td class="miw100 w100"><%= f.input :gender_true, collection: [["Tất cả", ""], ["Nam", true], ["Nữ", false]], include_blank: false, label: false %></td>
+          <td class="miw100 w100">
+            <%= f.input :klass_name_cont, label: false %>
+          </td>
+          <td class="miw100 w100">
+            <%= f.input :final_gpa_gteq, label: false, placeholder: "Từ:" %>
+          </td>
+          <td class="miw100 w100">
+            <%= f.input :final_gpa_lteq, label: false, placeholder: "Đến:" %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button type="submit" class="btn-filter">Lọc</button>
+<% end %>
+
 
 <% if @students.present? %>
   <div class="listing-index">
@@ -8,10 +50,11 @@
   <thead>
     <tr>
       <th>STT</th>
-      <th>Họ và tên</th>
-      <th>Lớp</th>
+      <th><%= sort_link(@q, :first_name, "Họ và tên") %></th>
+      <th><%= sort_link(@q, :klass_name, "Lớp") %></th>
       <th>ĐTB HK1</th>
       <th>ĐTB HK2</th>
+      <th><%= sort_link(@q, :final_gpa, "ĐTB Cả năm") %></th>
     </tr>
   </thead>
   
@@ -23,6 +66,7 @@
         <td><%= student.klass.name %></td>
         <td><%= student.semester_gpa(Semester.find(1)) %></td>
         <td><%= student.semester_gpa(Semester.find(2)) %></td>
+        <td><%= student.to_ability %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,5 +75,30 @@
 <% else %>
   <p>Hiện tại chưa có dữ liệu.</p>
 <% end %>
+
+<%#= will_paginate @students %>
+
+<header>
+  <h4>Biểu đồ thống kê</h4>
+</header>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= pie_chart @gender_chart, colors: ["#ff0777", "#0698ff"],
+      library: { pieHole: 0.3,
+      title: "Giới tính" } %>
+  </div>
+  <div class="col-md-6">
+    <%= pie_chart @age_chart, library: { pieHole: 0.3,
+      title: "Năm sinh" } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= pie_chart @ability_chart, library: { is3D: true,
+      title: "Danh hiệu" } %>
+  </div>
+</div>
 
 <%= link_to "Trở về", admin_root_path, class: "back" %>
