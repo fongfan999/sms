@@ -5,7 +5,8 @@
 
 	<ul class="actions">
 		<li><%= link_to "Sửa", [:edit, @klass, @student], class: "edit" %></li>
-		<li><%= link_to "Xóa", [@klass, @student], class: "delete" %></li>
+		<li><%= link_to "Xóa", [@klass, @student], class: "delete",
+			method: :delete, data: { confirm: "Bạn đã chắc chưa?" } %></li>
 	</ul>
 </header>
 
@@ -124,4 +125,5 @@
 		
 </div>
 
+<header></header>
 <%= link_to "Trở về", :back, class: "back" %>

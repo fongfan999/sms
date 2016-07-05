@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'rule/index'
+  resources :notifications, only: [:show]
 
   namespace :admin do
     root 'application#index'
@@ -19,17 +19,14 @@ Rails.application.routes.draw do
       end
     end
     resources :statistics, only: [:index]
-    resources :teachers, except: [:show] do
-      # collection do
-      #   get :search
-      #   post :search
-      # end
-    end
+    resources :teachers, except: [:show]
+    resources :notifications, except: [:index, :show]
   end
 
   devise_for :users
   root 'welcome#index'
   get "rule" => "rule#index"
+
   resources :klasses, only: [:show] do
     resources :students, except: [:index, :destroy]
 

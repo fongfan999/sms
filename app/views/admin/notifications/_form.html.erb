@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin, notification] do |f| %>
+  <%= f.input :title, label: "Tiêu đề" %>
+  <%= f.input :description, label: "Nội dung" %>
+
+  <%= f.button :submit, class: "btn-success",
+    value: notification.new_record? ? "Tạo Thông báo" : "Cập nhật" %>
+<% end %>

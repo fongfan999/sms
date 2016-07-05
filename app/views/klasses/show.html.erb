@@ -7,7 +7,7 @@
 		<li><%= link_to 'Sửa Lớp', edit_admin_klass_path(@klass), class: "edit" %></li>
 		<li><%= link_to "Xóa Lớp", admin_klass_path(@klass),
 			class: "delete", method: :delete,
-			data: { confirm: "Are you sure to delete this student?" } %></li>
+			data: { confirm: "Bạn đã chắc chưa?" } %></li>
 	</ul>
   <% end %>
 </header>
@@ -111,4 +111,5 @@
   <p>Hiện tại chưa có dữ liệu.</p>
 <% end %>
 	
+<header></header>
 <%= link_to "Trở về", admin_klasses_path, class: "back" %>

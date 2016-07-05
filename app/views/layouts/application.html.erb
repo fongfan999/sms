@@ -34,15 +34,27 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><%= link_to "Trang chu", root_path %></li>
-          <li><a href="#">Thông báo</a></li>
-          <li><%= link_to "Quy định", rule_path %></li>
+          <li class=<%= "active" if current_page?("/") %>>
+            <%= link_to "Trang chu", root_path %>
+          </li>
+          <li class=<%= "active" if current_page?("/rule") %>>
+            <%= link_to "Quy định", rule_path %>
+          </li>
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <% if current_user.try(:admin?) %>
-              <li><%= link_to "Ban Giám Hiệu", admin_root_path %></li>
+              <li class=<%= "active" if current_page?("/admin") || current_page?("/admin/notifications/new") %>>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Ban Giám Hiệu<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Bảng điều khiển", admin_root_path %></li>
+                  <li><%= link_to "Đăng Thông báo",
+                    new_admin_notification_path %></li>
+                </ul>
+              </li>
             <% elsif current_user.try(:teacher_id) %>
               <li>
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -107,5 +119,14 @@
 
 		<%= yield %>
 	</div>
+
+  <header class="center">
+    <hr>
+    <h6 class="maw100">PHÒNG ĐÀO TẠO</h6>
+    <small>Phòng A120, Trường Đại học Công nghệ Thông tin.</small><br/>
+    <small>Khu phố 6, P.Linh Trung, Q.Thủ Đức, TP.Hồ Chí Minh.</small><br/>
+    <small>Điện thoại: (08) 372 51993, Ext: 113(Hệ từ xa qua mạng), 112(Hệ chính quy).</small><br/>
+    <small>Email: phongdaotaodh@uit.edu.vn</small>
+  </header>
 </body>
 </html>

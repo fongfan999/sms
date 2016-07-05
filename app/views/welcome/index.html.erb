@@ -1,2 +1,26 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<%= title("Thông báo") %>
+
+<header>
+  <h2>Thông báo</h2>
+</header>
+
+<% @notifications.each do |notification| %>
+  <div class="well" style="position: relative">
+    <h4><%= notification.title %></h4>
+    <small><i>
+      Đăng lúc: <%= format_date(notification.created_at) %>
+      Cập nhật lần cuối: <%= format_date(notification.updated_at) %>
+    </i></small>
+    <p class="mt20">
+      <%= truncate(notification.description, length: 200) %>
+      <%= link_to "Xem thêm", notification %>
+    </p>
+    <% admins_only do %>
+    <%= link_to "Sửa", [:edit, :admin, notification],
+      class: "edit"  %>
+    <%= link_to "Xóa", [:admin, notification],
+      method: :delete, class: "delete",
+      data: { confirm: "Bạn đã chắc chưa" } %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<% @notification = Notification.find(params[:id]) %>
+
+<%= title(@notification.title) %>
+
+<header>
+  <h4><%= @notification.title %></h4>
+</header>
+
+<%= simple_format(@notification.description) %>
+
+<header></header>
+<%= link_to "Trở về", root_path, class: "back" %>
