@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705075447) do
+ActiveRecord::Schema.define(version: 20160705112627) do
 
   create_table "conducts", force: :cascade do |t|
     t.string   "name"
@@ -55,9 +55,11 @@ ActiveRecord::Schema.define(version: 20160705075447) do
     t.integer  "grade_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "teacher_id"
   end
 
   add_index "klasses", ["grade_id"], name: "index_klasses_on_grade_id"
+  add_index "klasses", ["teacher_id"], name: "index_klasses_on_teacher_id"
 
   create_table "marks", force: :cascade do |t|
     t.string   "name"
@@ -122,6 +124,15 @@ ActiveRecord::Schema.define(version: 20160705075447) do
   add_index "students", ["klass_id"], name: "index_students_on_klass_id"
   add_index "students", ["mark_id"], name: "index_students_on_mark_id"
 
+  create_table "teachers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "date_of_birth"
+    t.boolean  "gender",        default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -137,10 +148,12 @@ ActiveRecord::Schema.define(version: 20160705075447) do
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
     t.integer  "student_id"
+    t.integer  "teacher_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["student_id"], name: "index_users_on_student_id"
+  add_index "users", ["teacher_id"], name: "index_users_on_teacher_id"
 
 end

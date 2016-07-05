@@ -27,7 +27,7 @@
 	</tr>
 	<tr>
 		<th>Giáo viên chủ nhiệm</th>
-		<td><%= link_to "##", "#" %></td>
+		<td><%= link_to @klass.teacher_name, @klass.teacher %></td>
 	</tr>
 	<tr>
 		<th>Ngày tạo</th>
@@ -53,7 +53,7 @@
   <% end %>
   </div>
   
-  <% admins_only do %> #teachers_only
+  <% if is_admin || is_teacher %>
   	<ul class="actions">
       <li><%= link_to "Bảng điểm",
       	klass_semester_course_details_path(@klass, Semester.first, Course.first),

@@ -1,0 +1,14 @@
+<%= simple_form_for [:admin, teacher] do |f| %>
+  <%= f.input :last_name, label: "Họ và Tên lót" %>
+  <%= f.input :first_name, label: "Tên" %>
+  <%= f.input :date_of_birth, label: "Ngày sinh", order: [:day, :month, :year],
+    start_year: Date.today.year - 80,
+    end_year: Date.today.year - 20 %>
+  <span class="gender" data-id="<%= teacher.gender %>">
+  <%= f.input :gender, label: "Giới tính", as: :radio_buttons,
+    collection: [['Nam', true] ,['Nữ', false]] %>
+  </span>
+
+  <%= f.button :submit, value: teacher.new_record? ? "Tạo" : "Cập nhật",
+    class: "btn-success" %>
+<% end %>

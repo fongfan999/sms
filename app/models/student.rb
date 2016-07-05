@@ -7,7 +7,7 @@ class Student < ActiveRecord::Base
 	belongs_to :mark
 	belongs_to :conduct
 	belongs_to :ability, class_name: "Mark"
-	has_one :account, class_name: "User"
+	has_one :account, class_name: "User", dependent: :destroy
 
 	validates :first_name, presence: true, length: { maximum: 7 }
 	validates :last_name, presence: true, length: { maximum: 28 }

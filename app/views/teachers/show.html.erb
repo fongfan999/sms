@@ -1,0 +1,39 @@
+<% title(@teacher.name) %>
+
+<header>
+  <h2><%= @teacher.name %></h2>
+
+  <ul class="actions">
+    <li><%= link_to "Sửa", [:edit, :admin, @teacher], class: "edit" %></li>
+    <li><%= link_to "Xóa", [:admin, @teacher], class: "delete" %></li>
+  </ul>
+</header>
+
+<table class="info">
+  <tr>
+    <th>Họ và tên</th>
+    <td><%= @teacher.name %></td>
+  </tr>
+  <tr>
+    <th>Ngày sinh</th>
+    <td><%= format_date(@teacher.date_of_birth, false) %></td>
+  </tr>
+  <tr>
+    <th>Giới tính</th>
+    <td><%= @teacher.to_gender %></td>
+  </tr>
+  <tr>
+    <th>Lớp chủ nhiệm</th>
+    <td><%= link_to @teacher.klass_name, @teacher.klass %></td>
+  </tr>
+  <tr>
+    <th>Ngày tạo</th>
+    <td><%= format_date(@teacher.created_at) %></td>
+  </tr>
+  <tr>
+    <th>Cập nhật lần cuối</th>
+    <td><%= format_date(@teacher.updated_at) %></td>
+  </tr>
+</table>
+
+<%= link_to "Trở về", :back, class: "back" %>

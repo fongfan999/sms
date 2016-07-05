@@ -17,6 +17,12 @@ Rails.application.routes.draw do
       end
     end
     resources :statistics, only: [:index]
+    resources :teachers, except: [:show] do
+      collection do
+        get :search
+        post :search
+      end
+    end
   end
 
   devise_for :users
@@ -41,6 +47,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :teachers, only: [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

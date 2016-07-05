@@ -31,6 +31,7 @@ class Admin::KlassesController < Admin::ApplicationController
   # PATCH/PUT /admin/klasses/1
   def update
     if @klass.update(klass_params)
+      # @klass.attributes = params.require(:klass).permit(:teacher)
       flash[:notice] = "Class was successfully updated"
       redirect_to @klass
     else
@@ -54,6 +55,6 @@ class Admin::KlassesController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def klass_params
-      params.require(:klass).permit(:name, :grade_id)
+      params.require(:klass).permit(:name, :grade_id, :teacher_id)
     end
 end

@@ -1,0 +1,57 @@
+<%= title "Danh sách Giáo viên" %>
+
+<header>
+  <h2>Danh sách Giáo viên</h2>
+
+  <div class="search-div">
+    <%= search_form_for @q, url: admin_teachers_path,
+      html: { class: "form-inline" } do |f| %>
+    <%= f.search_field :first_name_or_last_name_cont,
+      class: "form-control", placeholder: "Nhập Tên" %>
+    
+    <button class='btn btn-search'>
+      Tìm kiếm
+    </button>
+  <% end %>
+  </div>
+
+  <ul class="actions">
+    <li><%= link_to "Thêm mới", new_admin_teacher_path, class: "new" %></li>
+  </ul>
+</header>
+
+<% if @teachers.present? %>
+  <div class="listing-index icon-only">
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th><%= sort_link(@q, :first_name, "Họ và tên") %></th>
+          <th>Giới tính</th>
+          <th>Ngày sinh</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @teachers.each_with_index do |teacher, index| %>
+        <tr>
+          <td><%= link_to index + 1, teacher %></td>
+          <td><%= teacher.name %></td>
+          <td><%= teacher.to_gender %></td>
+          <td><%= teacher.date_of_birth %></td>
+          <td>
+              <%= link_to '', [:edit, :admin, teacher], class: "edit" %>
+              <%= link_to '', [:admin, teacher], method: :delete,
+              data: { confirm: 'Bạn đã chắc chưa?' }, class: "delete" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p>Hiện tại chưa có dữ liệu.</p>
+<% end %>
+
+
+<%= link_to "Trở về", admin_root_path, class: "back" %>
+
