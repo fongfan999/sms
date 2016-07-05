@@ -24,6 +24,10 @@ class StudentsController < ApplicationController
 		@student = @klass.students.build(student_params)
 
 		if @student.save
+			@student.account = User.create(
+				email: @student.id_code + "@uit.edu.vn",
+				password: @student.id_code)
+			@student.save
 			flash[:notice] = "Student was successfully created."
 			redirect_to @klass
 		else

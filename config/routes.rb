@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
-  get 'statistics/index'
-  end
-
-  devise_for :users
-
-  namespace :admin do
     root 'application#index'
+    get 'statistics/index'
 
     resources :klasses, except: [:show]
     resources :students, only: [:index, :destroy] do
@@ -24,6 +19,8 @@ Rails.application.routes.draw do
     resources :statistics, only: [:index]
   end
 
+  devise_for :users
+  root 'welcome#index'
   resources :klasses, only: [:show] do
     resources :students, except: [:index, :destroy]
 

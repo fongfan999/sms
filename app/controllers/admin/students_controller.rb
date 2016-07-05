@@ -16,9 +16,10 @@ class Admin::StudentsController < Admin::ApplicationController
   # DELETE /students/1
   def destroy
   	@student = Student.find(params[:id])
+    @klass = @student.klass
     @student.destroy
     
     flash[:notice] = "Student was successfully destroyed."
-    redirect_to klass_students_path
+    redirect_to @klass
   end
 end

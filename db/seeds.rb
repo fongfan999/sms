@@ -124,3 +124,7 @@ end
 unless Rule.count > 0
 	Rule.create
 end
+
+unless User.exists?(email: "admin@uit.edu.vn")
+	User.create(email: "admin@uit.edu.vn", password: "password", admin: true)
+end

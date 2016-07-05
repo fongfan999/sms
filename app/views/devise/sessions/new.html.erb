@@ -1,0 +1,25 @@
+<%= title("Đăng nhập") %>
+
+<header>
+  <h1 class="center">Đăng nhập</h1>
+</header>
+
+<div class="login-form col-md-6 col-md-offset-3">
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-group">
+    <%= f.input :email, required: false, label: false, autofocus: true,
+      class: "form-control login-field", placeholder: "Email", id: "login-name" %>
+    <label class="login-field-icon fui-user" for="login-name"></label>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :password, required: false, label: false, class: "form-control
+      login-field", placeholder: "Mật khẩu", id: "login-pass" %>
+      <label class="login-field-icon fui-lock" for="login-pass"></label>
+  </div>
+  
+  <%= f.button :submit, "Đăng nhập", class: "btn btn-primary btn-lg btn-block" %>
+  <% end %>
+</div>
+
+<%#= render "devise/shared/links" %>

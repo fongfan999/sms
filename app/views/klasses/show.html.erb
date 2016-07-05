@@ -2,12 +2,14 @@
 
 <header>
 	<h2>Lớp <%= @klass.name %></h2>
+  <% admins_only do %>
 	<ul class="actions">
 		<li><%= link_to 'Sửa Lớp', edit_admin_klass_path(@klass), class: "edit" %></li>
 		<li><%= link_to "Xóa Lớp", admin_klass_path(@klass),
 			class: "delete", method: :delete,
 			data: { confirm: "Are you sure to delete this student?" } %></li>
 	</ul>
+  <% end %>
 </header>
 
 <table class="info">
@@ -50,17 +52,19 @@
     </button>
   <% end %>
   </div>
+  
+  <% admins_only do %> #teachers_only
+  	<ul class="actions">
+      <li><%= link_to "Bảng điểm",
+      	klass_semester_course_details_path(@klass, Semester.first, Course.first),
+      	class: "scoreboard" %></li>
 
-	<ul class="actions">
-    <li><%= link_to "Bảng điểm",
-    	klass_semester_course_details_path(@klass, Semester.first, Course.first),
-    	class: "scoreboard" %></li>
-
-    <% unless max_students?(@klass) %>
-		  <li><%= link_to "Thêm mới", new_klass_student_path(@klass),
-        class: "new" %></li>
-    <% end %>
-	</ul>
+      <% unless max_students?(@klass) %>
+  		  <li><%= link_to "Thêm mới", new_klass_student_path(@klass),
+          class: "new" %></li>
+      <% end %>
+  	</ul>
+  <% end %>
 </header>
 
 <% if @students.present? %>
@@ -69,27 +73,35 @@
       <thead>
         <tr>
         	<th>STT</th>
-		      <th>Họ và tên</th>
-		      <th>Mã số học sinh</th>
-		      <th>ĐTB HK1</th>
-		      <th>ĐTB HK2</th>
-          <th>ĐTB Cả năm</th>
-		      <th></th>
+		      <th><%= sort_link(@q, :first_name, "Họ và tên") %></th>
+		      <th><%= sort_link(@q, :student_code, "Mã số học sinh") %></th>
+          <% admins_only do %> #teachers_only
+  		      <th>ĐTB HK1</th>
+  		      <th>ĐTB HK2</th>
+            <th><%= sort_link(@q, :student_code, "ĐTB Cả năm") %></th>
+  		      <th></th>
+          <% end %>
 		    </tr>
       </thead>
       <tbody>
         <% @students.each_with_index do |student, index| %>
         <tr>
-        	<td><%= link_to index + 1, [@klass, student] %></td>
+          <% if current_user.try(:admin?) %> #teachers_only
+            <td><%= link_to index + 1, [@klass, student] %></td>
+          <% else %>
+        	 <td><%= index + 1 %></td>
+          <% end %>
 	        <td><%= student.name %></td>
 	        <td><%= student.student_code %></td>
-	        <td><%= student.semester_gpa(Semester.find(1)) %></td>
-	        <td><%= student.semester_gpa(Semester.find(2)) %></td>
-          <td><%= student.to_ability %></td>
-	        <td>
-	        	<%= link_to '', [:edit, @klass, student], class: "edit" %>
-	        	<%= link_to '', [@klass, student], method: :delete,
-	        	data: { confirm: 'Bạn đã chắc chưa?' }, class: "delete" %></td>
+          <% admins_only do %> #teacher_only
+  	        <td><%= student.semester_gpa(Semester.find(1)) %></td>
+  	        <td><%= student.semester_gpa(Semester.find(2)) %></td>
+            <td><%= student.to_ability %></td>
+  	        <td>
+  	        	<%= link_to '', [:edit, @klass, student], class: "edit" %>
+  	        	<%= link_to '', [:admin, student], method: :delete,
+  	        	data: { confirm: 'Bạn đã chắc chưa?' }, class: "delete" %></td>
+          <% end %>
 	      </tr>
         <% end %>
       </tbody>

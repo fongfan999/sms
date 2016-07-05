@@ -7,6 +7,7 @@ class Student < ActiveRecord::Base
 	belongs_to :mark
 	belongs_to :conduct
 	belongs_to :ability, class_name: "Mark"
+	has_one :account, class_name: "User"
 
 	validates :first_name, presence: true, length: { maximum: 7 }
 	validates :last_name, presence: true, length: { maximum: 28 }
@@ -76,6 +77,7 @@ class Student < ActiveRecord::Base
 	end
 
 	def determine_ability
+		return if self.final_gpa.nil?
 		Mark.all.each do |record|
 			if self.final_gpa >= record.point
 				self.update_columns(mark_id: record.id)
