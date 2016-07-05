@@ -4,6 +4,7 @@
 @import "font-awesome";
 @import 'flat-ui';
 @import "responsive";
+@import "admin/application";
 
 html, body {
 	overflow-x: hidden;
@@ -63,6 +64,10 @@ header {
 
 .w100 {
 	width: 100px;
+}
+
+.bgcfff {
+	background-color: #fff;
 }
 
 ul.actions, ul.list-actions {

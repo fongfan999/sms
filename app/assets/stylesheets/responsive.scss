@@ -22,6 +22,10 @@
 	a.edit, a.delete, a.reset {
 		margin-bottom: 5px;
 	}
+
+	.col-md-6 {
+		text-align: center;
+	}
 }
 
 @media(max-width: $screen-xs-max) {

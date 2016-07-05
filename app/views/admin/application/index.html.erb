@@ -1,11 +1,59 @@
+<%= title("Bảng điều khiển") %>
+
 <header>
-	<h2>Bảng điều khiển</h2>
+	<h2 class="center maw100">Bảng điều khiển</h2>
 </header>
 
-<ul class="list-unstyled">	
-	<li><%= link_to "Quản lý Học sinh", admin_students_path %></li>
-	<li><%= link_to "Quản lý Lớp", admin_klasses_path %></li>
-	<li><%= link_to "Quản lý Giáo viên", admin_teachers_path %></li>
-	<li><%= link_to "Thống kê", admin_statistics_path %></li>
-	<li><%= link_to "Thay đổi quy định", admin_rules_path %></li>
-</ul>
+<div id="dashboard">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 student"><%= link_to image_tag("student.png"),
+          admin_students_path %></div>
+        <div class="col-md-6 bgcfff">
+          <h3><%= Student.count %></h3>
+          <h5>Học sinh</h5>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 klass"><%= link_to image_tag("class.png"),
+          admin_klasses_path %></div>
+        <div class="col-md-6 bgcfff">
+          <h3><%= Klass.count %></h3>
+          <h5>Lớp học</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 teacher"><%= link_to image_tag("teacher.png"),
+          admin_klasses_path %></div>
+        <div class="col-md-6 bgcfff">
+          <h3><%= Teacher.count %></h3>
+          <h5>Giáo viên</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 rule"><%= link_to image_tag("rule.png"),
+          admin_klasses_path %></div>
+        <div class="col-md-6 bgcfff">
+          <h3>2</h3>
+          <h5>Quy định</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+</header>
+<%= link_to "Trở về", root_path, class: "back" %>

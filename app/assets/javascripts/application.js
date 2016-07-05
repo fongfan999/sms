@@ -45,4 +45,8 @@ $(document).ready(function() {
 
   // Create Tooltips
   $('[data-toggle="tooltip"]').tooltip(); 
+
+  // Set backround Dashboard
+  path = window.location.pathname;
+  if (path == "/admin") { $("body").css("background-color", "#f1f4f7"); }
 });

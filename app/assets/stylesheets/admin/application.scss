@@ -1,3 +1,30 @@
-// Place all the styles related to the admin/application controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#dashboard {
+  
+  img {
+    height: 134px;
+  }
+
+  .col-md-6 {
+    padding: 25px;
+  }
+
+  .student, .klass, .teacher, .rule {
+    text-align: center;
+  }
+
+  .student {
+    background-color: #30a5ff;
+  }
+
+  .klass {
+    background-color: #ffb53e;
+  }
+
+  .teacher {
+    background-color: #1ebfae;
+  }
+
+  .rule {
+    background-color: #f9243f;
+  }
+}
