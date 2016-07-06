@@ -1,0 +1,28 @@
+/* line 3, /home/kenneth/Workspace/sms/app/assets/stylesheets/admin/application.scss */
+#dashboard img {
+  height: 134px;
+}
+/* line 7, /home/kenneth/Workspace/sms/app/assets/stylesheets/admin/application.scss */
+#dashboard .col-md-6 {
+  padding: 25px;
+}
+/* line 11, /home/kenneth/Workspace/sms/app/assets/stylesheets/admin/application.scss */
+#dashboard .student, #dashboard .klass, #dashboard .teacher, #dashboard .rule {
+  text-align: center;
+}
+/* line 15, /home/kenneth/Workspace/sms/app/assets/stylesheets/admin/application.scss */
+#dashboard .student {
+  background-color: #30a5ff;
+}
+/* line 19, /home/kenneth/Workspace/sms/app/assets/stylesheets/admin/application.scss */
+#dashboard .klass {
+  background-color: #ffb53e;
+}
+/* line 23, /home/kenneth/Workspace/sms/app/assets/stylesheets/admin/application.scss */
+#dashboard .teacher {
+  background-color: #1ebfae;
+}
+/* line 27, /home/kenneth/Workspace/sms/app/assets/stylesheets/admin/application.scss */
+#dashboard .rule {
+  background-color: #f9243f;
+}

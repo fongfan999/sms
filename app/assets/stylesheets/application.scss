@@ -89,6 +89,12 @@ form {
 	max-width: 500px;
 }
 
+.login-form {
+	form {
+		max-width: 100%;		
+	}
+}
+
 .full_width {
 	max-width: 100%;
 }

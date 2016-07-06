@@ -68,6 +68,10 @@ class Student < ActiveRecord::Base
 		end
 	end
 
+	def to_conduct
+		conduct.nil? ? "Chưa cập nhật" : conduct.name
+	end
+
 	def to_ability
 		if ability.nil?
 			final_gpa

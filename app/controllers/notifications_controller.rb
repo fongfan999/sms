@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def show
-    @student = Student.first
   end
 end

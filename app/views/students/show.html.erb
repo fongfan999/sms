@@ -65,8 +65,10 @@
 				<td><%= @score_1.to_name("mark") %></td>
 				<td>
 					<%= @score_1.to_name("conduct") %>
+					<% if is_admin? || is_teacher? %>
 					<%= link_to "Cập nhật", [:edit, @klass, @student, @score_1],
 						class: "tiny"  %>
+					<% end %>
 				</td>
 				<td><%= @score_1.to_name("mark") %></td>
 			</tr>
@@ -75,15 +77,17 @@
 				<td><%= @score_2.to_name("mark") %></td>
 				<td>
 					<%= @score_2.to_name("conduct") %>
+					<% if is_admin? || is_teacher? %>
 					<%= link_to "Cập nhật", [:edit, @klass, @student, @score_2],
 						class: "tiny"  %>
+					<% end %>
 				</td>
 				<td><%= @score_2.to_name("mark") %></td>
 			</tr>
 			<tr>
 				<td><strong>Cả năm</strong></td>
 				<td><%= @student.mark.name %></td>
-				<td><%= @student.conduct.name %></td>
+				<td><%= @student.to_conduct %></td>
 				<td><%= @student.ability.name %></td>
 			</tr>
 		</tbody>

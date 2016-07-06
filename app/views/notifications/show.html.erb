@@ -3,7 +3,11 @@
 <%= title(@notification.title) %>
 
 <header>
-  <h4><%= @notification.title %></h4>
+  <h4 class="maw100"><%= @notification.title %></h4>
+  <small><i>
+      Đăng lúc: <%= format_date(@notification.created_at) %> | 
+      Cập nhật lần cuối: <%= format_date(@notification.updated_at) %>
+    </i></small>
 </header>
 
 <%= simple_format(@notification.description) %>

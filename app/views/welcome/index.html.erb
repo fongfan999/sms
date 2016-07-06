@@ -24,7 +24,7 @@
   <div class="well" style="position: relative">
     <h4><%= notification.title %></h4>
     <small><i>
-      Đăng lúc: <%= format_date(notification.created_at) %>
+      Đăng lúc: <%= format_date(notification.created_at) %> | 
       Cập nhật lần cuối: <%= format_date(notification.updated_at) %>
     </i></small>
     <p class="mt20">
@@ -40,3 +40,13 @@
     <% end %>
   </div>
 <% end %>
+
+<div class="will_page">
+  <div class="center">
+    <div class="row">
+      <div class="col-md-12">
+        <%= will_paginate @notifications %>
+      </div>
+    </div>
+  </div>
+</div>
