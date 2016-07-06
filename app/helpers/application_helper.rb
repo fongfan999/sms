@@ -11,11 +11,11 @@ module ApplicationHelper
 		block.call if current_user.try(:admin?)
 	end
 
-	def is_admin
+	def is_admin?
 		current_user.try(:admin?)
 	end
 
-	def is_teacher
+	def is_teacher?
 		current_user.try(:teacher_id)
 	end
 

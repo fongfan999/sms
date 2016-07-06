@@ -13,6 +13,12 @@
 		text-align: right;
 	}
 
+	header.search-in-list {
+		h1, h2, h3, h4, h5, h6 {
+			max-width: 35%;
+		}
+	}
+
 	.info {
 		max-width: 65%;
 	}
@@ -40,5 +46,13 @@
   .btn-search {
 		margin-top: 5px;
 		width: 100%;
+	}
+
+	header.search-in-list {
+		margin-top: 50px !important;
+
+		ul.actions {
+			top: -25px;
+		}
 	}
 }

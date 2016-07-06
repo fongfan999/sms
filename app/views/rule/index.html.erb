@@ -58,7 +58,8 @@
           <% Mark.all.each_with_index do |mark, index| %>
             <tr>
               <td><%= mark.name %><br/><span class="tiny">(<%= mark.point %> Trở lên)</span></td>
-              <td><%= Conduct.find(index + 1).name %></td>
+              <td><%= Conduct.find(index + 1).name %><br/>
+              <span class="tiny">(Trở lên)</span></td>
               <td><%= mark.name %></td>
             </tr>
           <% end %>

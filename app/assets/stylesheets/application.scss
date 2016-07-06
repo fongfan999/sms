@@ -50,6 +50,16 @@ header {
 	}
 }
 
+header.search-in-list {
+	ul.actions {
+		position: absolute;
+		bottom: -2px;
+		right: 2px;
+		max-width: 65%;
+		text-align: right;
+	}
+}
+
 .maw100 {
 	max-width: 100%;
 }
@@ -272,7 +282,7 @@ a.reset {
 
 .tiny {
 	font-size: 13px;
-  display: block;
+  // display: block;
   font-weight: lighter;
   font-style: italic;
 }

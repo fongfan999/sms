@@ -7,6 +7,7 @@ class Score < ActiveRecord::Base
 	belongs_to :conduct
 	belongs_to :ability, class_name: "Mark"
 
+	after_update :determine_conduct
 	after_update :determine_ability
 
 	scope :ability_chart, ->(semester_id) do
@@ -27,6 +28,21 @@ class Score < ActiveRecord::Base
 		else
 			conduct.nil? ? "Chưa cập nhật" : conduct.name
 		end
+	end
+
+	def determine_conduct
+		f = student.scores.first.conduct
+		l = student.scores.last.conduct
+		# if l.id <= f.id - 2
+		# 	student.conduct = l
+		# else
+		# 	student.conduct.f
+		# end
+		if !f.nil? && !l.nil?
+			student.conduct = l.id <= f.id - 2 ? l : Conduct.find(f.id + 2)
+			student.save
+		end
+		
 	end
 
 	def determine_ability

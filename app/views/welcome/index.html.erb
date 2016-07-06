@@ -1,7 +1,23 @@
 <%= title("Thông báo") %>
 
-<header>
+<header class="search-in-list">
   <h2>Thông báo</h2>
+  
+  <ul class="actions">
+    <li><div class="search-div">
+    <%= search_form_for @q, url: root_path,
+      html: { class: "form-inline" } do |f| %>
+    <%= f.search_field :title_or_description_cont,
+      class: "form-control", placeholder: "Nhập Tiêu đề, Nội dung" %>
+    
+    <button class='btn btn-search'>
+      Tìm kiếm
+    </button>
+  <% end %>
+  </div>
+    </li>
+  </ul>
+  
 </header>
 
 <% @notifications.each do |notification| %>

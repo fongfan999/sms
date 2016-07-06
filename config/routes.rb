@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   get "rule" => "rule#index"
 
   resources :klasses, only: [:show] do
-    resources :students, except: [:index, :destroy]
+    resources :students, except: [:index, :destroy] do
+      resources :scores, only: [:edit, :update]
+    end
 
     resources :semesters, only: [] do
       resources :courses, only: [] do

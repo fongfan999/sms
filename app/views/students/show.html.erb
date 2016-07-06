@@ -36,10 +36,6 @@
 		<td><%= @student.email %></td>
 	</tr>
 	<tr>
-		<th>Tên phụ huynh</th>
-		<td><%= link_to "Chưa có", "#" %></td>
-	</tr>
-	<tr>
 		<th>Ngày tạo</th>
 		<td><%= format_date(@student.created_at) %></td>
 	</tr>
@@ -67,14 +63,28 @@
 			<tr>
 				<td><strong>Học kỳ 1</strong></td>
 				<td><%= @score_1.to_name("mark") %></td>
-				<td><%= @score_1.to_name("conduct") %></td>
+				<td>
+					<%= @score_1.to_name("conduct") %>
+					<%= link_to "Cập nhật", [:edit, @klass, @student, @score_1],
+						class: "tiny"  %>
+				</td>
 				<td><%= @score_1.to_name("mark") %></td>
 			</tr>
 			<tr>
 				<td><strong>Học kỳ 2</strong></td>
 				<td><%= @score_2.to_name("mark") %></td>
-				<td><%= @score_2.to_name("conduct") %></td>
+				<td>
+					<%= @score_2.to_name("conduct") %>
+					<%= link_to "Cập nhật", [:edit, @klass, @student, @score_2],
+						class: "tiny"  %>
+				</td>
 				<td><%= @score_2.to_name("mark") %></td>
+			</tr>
+			<tr>
+				<td><strong>Cả năm</strong></td>
+				<td><%= @student.mark.name %></td>
+				<td><%= @student.conduct.name %></td>
+				<td><%= @student.ability.name %></td>
 			</tr>
 		</tbody>
 	</table>

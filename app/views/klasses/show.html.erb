@@ -53,7 +53,7 @@
   <% end %>
   </div>
   
-  <% if is_admin || is_teacher %>
+  <% if is_admin? || is_teacher? %>
   	<ul class="actions">
       <li><%= link_to "Bảng điểm",
       	klass_semester_course_details_path(@klass, Semester.first, Course.first),
@@ -75,7 +75,7 @@
         	<th>STT</th>
 		      <th><%= sort_link(@q, :first_name, "Họ và tên") %></th>
 		      <th><%= sort_link(@q, :student_code, "Mã số học sinh") %></th>
-          <% admins_only do %> #teachers_only
+          <% if is_admin? || is_teacher? %>
   		      <th>ĐTB HK1</th>
   		      <th>ĐTB HK2</th>
             <th><%= sort_link(@q, :student_code, "ĐTB Cả năm") %></th>
@@ -86,14 +86,14 @@
       <tbody>
         <% @students.each_with_index do |student, index| %>
         <tr>
-          <% if current_user.try(:admin?) %> #teachers_only
+          <% if is_admin? || is_teacher? %>
             <td><%= link_to index + 1, [@klass, student] %></td>
           <% else %>
         	 <td><%= index + 1 %></td>
           <% end %>
 	        <td><%= student.name %></td>
 	        <td><%= student.student_code %></td>
-          <% admins_only do %> #teacher_only
+          <% if is_admin? || is_teacher? %>
   	        <td><%= student.semester_gpa(Semester.find(1)) %></td>
   	        <td><%= student.semester_gpa(Semester.find(2)) %></td>
             <td><%= student.to_ability %></td>
