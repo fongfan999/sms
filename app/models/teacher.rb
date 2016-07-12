@@ -1,5 +1,5 @@
 class Teacher < ActiveRecord::Base
-  # include Reusable
+  include Reusable
   has_one :account, class_name: "User", dependent: :destroy
   has_one :klass
 
