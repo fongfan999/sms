@@ -67,6 +67,10 @@ class Student < ActiveRecord::Base
 			"#{score.gpa} (#{score.ability.name})"
 		end
 	end
+	
+	def to_mark
+		mark.nil? ? "Chưa cập nhật" : mark.name
+	end
 
 	def to_conduct
 		conduct.nil? ? "Chưa cập nhật" : conduct.name
